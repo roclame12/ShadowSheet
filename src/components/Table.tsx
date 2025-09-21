@@ -1,11 +1,10 @@
-import React, {ReactElement, CSSProperties} from 'react';
+import React, { ReactElement } from 'react';
 import "../CSS/components/Table.css"
 
 export interface TableProps {
     header: string[];                           // the header for each column
     rowItems: React.ComponentType<RowProps>[];  // an array containing the Components will display, these components should be the same
     columns?: number;                           // the amount of columns that the table should display at once (defaults to 1)
-    columnStyle?: CSSProperties;                // the style of each column of the table
 }
 
 
@@ -33,7 +32,7 @@ function Column({header, children, isLast}: {header: string[]; children: ReactEl
     return (
         <div className="column-container">
             <div className="column-grid" style={{"--cols": "1fr 2fr"}}>
-                <div className="column-header">
+                <div className="column-header" style={isLast ? {"--header-toggle": "none"} : {"--header-toggle": "\"\""}}>
                     {
                         header.map((item) => (
                             <div className="row-child">
@@ -72,7 +71,7 @@ export default function Table(props: TableProps) {
                     <p>blah6</p>
                 </Row>
             </Column>
-            <Column header={props.header}>
+            <Column header={props.header} isLast={true}>
                 <Row>
                     <p>blah1</p>
                     <p>blah2</p>

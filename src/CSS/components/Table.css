@@ -16,10 +16,8 @@
 }
 
 
-.column-container {
-    flex: 1;
-    border-right: 3px dashed var(--primary-white);
-}
+.column-container { flex: 1; }
+.column-container:not(:last-child) { border-right: 3px dashed var(--primary-white); }
 
 
 .column-grid {
@@ -39,7 +37,7 @@
 
 .column-header::after {  /* This is sort of a hack job to hide the dotted border on the header */
     position: absolute;
-    content: "";
+    content: var(--header-toggle);
     height: 100%;
     width: 3px;
     background-color: var(--primary-white);
