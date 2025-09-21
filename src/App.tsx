@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "./CSS/globals.css"
-import Table from "./components/Table.tsx";
+import Table, { Row } from "./components/Table.tsx";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -14,12 +14,20 @@ function App() {
 
   return (
     <main style={{backgroundColor: "darkgray"}}>
-        <h1>Welcome to Tauri</h1>
-        <Table header={["lorum", "ipsum"]} items={[<p>item</p>]}/>
-
-        <table>
-
-        </table>
+        <Table header={["lorum", "ipsum"]} colTemplate="1fr 2fr" columns={2}>
+            <Row>
+                <p>blah</p>
+                <p>blah</p>
+            </Row>
+            <Row>
+                <p>blah</p>
+                <p>blah</p>
+            </Row>
+            <Row>
+                <p>blah</p>
+                <p>blah</p>
+            </Row>
+        </Table>
 
     </main>
   );

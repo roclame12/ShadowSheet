@@ -2,15 +2,15 @@ import React, { ReactElement } from 'react';
 import "../CSS/components/Table.css"
 
 export interface TableProps {
+    children: ReactElement[];  // an array containing the Components will display, these components should be the same
     header: string[];                           // the header for each column
-    rowItems: React.ComponentType<RowProps>[];  // an array containing the Components will display, these components should be the same
-    columns?: number;                           // the amount of columns that the table should display at once (defaults to 1)
+    colTemplate: string;                        // The template on how the rows should be displayed. Uses grid-template-columns
+    columns?: number;                           // the amount of columns that the table should display at once
 }
 
 
 interface RowProps {
     children: ReactElement[]  // the Child elements of the
-    inLastCol: boolean
 }
 
 export function Row(props: RowProps) {
@@ -26,7 +26,9 @@ export function Row(props: RowProps) {
 }
 
 
-function Column({header, children, isLast}: {header: string[]; children: ReactElement[]; isLast?: boolean}) {
+function Column(
+    {header, children, isLast}:
+    {header: string[]; children: ReactElement[]; isLast?: boolean}) {
     isLast === undefined ? isLast = false : null;
 
     return (
@@ -55,32 +57,23 @@ function Column({header, children, isLast}: {header: string[]; children: ReactEl
  * @constructor
  */
 export default function Table(props: TableProps) {
+    const components: Array<ReactElement> = []
+    const numColumns = props.columns === undefined ? 1 : props.columns;
+
+    for (let i = 0; i < numColumns; i++) {
+        components.push(
+            <Column header={props.header} key={i}>
+                {props.children.filter(
+                    (_, j) => {
+                        return j % numColumns === 0
+                    })}
+            </Column>
+        )
+    }
+
     return (
         <div className="table-container">
-            <Column header={props.header} isLast={false}>
-                <Row>
-                    <p>blah1</p>
-                    <p>blah2</p>
-                </Row>
-                <Row>
-                    <p>blah3</p>
-                    <p>blah4</p>
-                </Row>
-                <Row>
-                    <p>blah5</p>
-                    <p>blah6</p>
-                </Row>
-            </Column>
-            <Column header={props.header} isLast={true}>
-                <Row>
-                    <p>blah1</p>
-                    <p>blah2</p>
-                </Row>
-                <Row>
-                    <p>blah3</p>
-                    <p>blah4</p>
-                </Row>
-            </Column>
+            {components}
         </div>
     )
 }
