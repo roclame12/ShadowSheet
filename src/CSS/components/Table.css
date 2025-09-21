@@ -1,0 +1,53 @@
+@import "../globals.css";
+
+.table-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1500px;
+    background: var(--primary-black);
+    color: var(--text-default);
+
+}
+
+.table-row {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+}
+
+
+.column-container {
+    flex: 1;
+    border-right: 3px dashed var(--primary-white);
+}
+
+
+.column-grid {
+    display: grid;
+    grid-template-columns: var(--cols);  /* cols is set within the react code (see Table.tsx) */
+    align-items: stretch;
+}
+
+.column-header {
+    position: relative;
+    color: var(--text-invert);
+    background-color: var(--primary-white);
+    display: grid;
+    grid-column: 1/-1;
+    grid-template-columns: subgrid;
+}
+
+.column-header::after {  /* This is sort of a hack job to hide the dotted border on the header */
+    position: absolute;
+    content: "";
+    height: 100%;
+    width: 3px;
+    background-color: var(--primary-white);
+    right: -3px;
+
+}
+
+
+.row-child {
+    margin-left: .5vw;
+}
