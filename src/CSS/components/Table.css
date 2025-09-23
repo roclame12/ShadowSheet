@@ -3,10 +3,10 @@
 .table-container {
     display: flex;
     flex-direction: row;
-    max-width: 1500px;
+    overflow-y: auto;
+    overflow-x: hidden;
     background: var(--primary-black);
     color: var(--text-default);
-
 }
 
 .table-row {
@@ -17,13 +17,16 @@
 
 
 .column-container { flex: 1; }
-.column-container:not(:last-child) { border-right: 3px dashed var(--primary-white); }
+.column-container:last-child .column-grid {
+    border-right: none;
+}
 
 
 .column-grid {
     display: grid;
     grid-template-columns: var(--cols);  /* cols is set within the react code (see Table.tsx) */
     align-items: stretch;
+    border-right: 3px dashed var(--primary-white);
 }
 
 .column-header {
