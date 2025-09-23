@@ -14,7 +14,7 @@ interface RowProps { children: ReactElement[] }
 
 export function Row(props: RowProps) {
     return (
-        <div className="table-row">
+        <div className="table-row" role="row">
             {props.children.map(item => ( /* Wrap everything in a div so it'll display correctly */
                 <div className="row-child">
                     {item}
@@ -33,7 +33,7 @@ function Column(
     return (
         <div className="column-container">
             <div className="column-grid" style={{"--cols": "1fr 2fr"}}>
-                <div className="column-header" style={isLast ? {"--header-toggle": "none"} : {"--header-toggle": "\"\""}}>
+                <div className="column-header" style={isLast ? {"--header-toggle": "none"} : {"--header-toggle": "\"\""}} role="columnheader">
                     {
                         header.map((item) => (
                             <div className="row-child">
@@ -72,7 +72,7 @@ export default function Table(props: TableProps) {
     }
 
     return (
-        <div className="table-container" style={tableStyle}>
+        <div className="table-container" style={tableStyle} role="table">
             {components}
         </div>
     )
