@@ -14,18 +14,26 @@ function App() {
 
   return (
     <main style={{backgroundColor: "darkgray"}}>
-        <Table header={["lorum", "ipsum"]} colTemplate="1fr 2fr" columns={2}>
+        <Table header={["lorum", "ipsum"]} colTemplate="1fr 2fr" columns={2} style={{width: "500px"}}>
             <Row>
-                <p>blah</p>
-                <p>blah</p>
+                <p>blah1</p>
+                <p>blah2</p>
             </Row>
             <Row>
-                <p>blah</p>
-                <p>blah</p>
+                <p>blah3</p>
+                <p>blah4</p>
             </Row>
             <Row>
-                <p>blah</p>
-                <p>blah</p>
+                <p>blah5</p>
+                <p>blah6</p>
+            </Row>
+            <Row>
+                <p>blah7</p>
+                <p>blah8</p>
+            </Row>
+            <Row>
+                <p>blah9</p>
+                <p>blah10</p>
             </Row>
         </Table>
 

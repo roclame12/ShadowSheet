@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, CSSProperties } from 'react';
 import "../CSS/components/Table.css"
 
 export interface TableProps {
@@ -6,12 +6,11 @@ export interface TableProps {
     header: string[];                           // the header for each column
     colTemplate: string;                        // The template on how the rows should be displayed. Uses grid-template-columns
     columns?: number;                           // the amount of columns that the table should display at once
+    style?: CSSProperties;
 }
 
 
-interface RowProps {
-    children: ReactElement[]  // the Child elements of the
-}
+interface RowProps { children: ReactElement[] }
 
 export function Row(props: RowProps) {
     return (
@@ -59,20 +58,21 @@ function Column(
 export default function Table(props: TableProps) {
     const components: Array<ReactElement> = []
     const numColumns = props.columns === undefined ? 1 : props.columns;
+    const tableStyle = props.style === undefined ? {} : props.style;
 
     for (let i = 0; i < numColumns; i++) {
         components.push(
             <Column header={props.header} key={i}>
                 {props.children.filter(
                     (_, j) => {
-                        return j % numColumns === 0
+                        return j % numColumns === i
                     })}
             </Column>
         )
     }
 
     return (
-        <div className="table-container">
+        <div className="table-container" style={tableStyle}>
             {components}
         </div>
     )
