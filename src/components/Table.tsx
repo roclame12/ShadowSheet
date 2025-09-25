@@ -2,20 +2,23 @@ import React, { ReactElement, CSSProperties } from 'react';
 import "../CSS/components/Table.css"
 
 export interface TableProps {
-    children: ReactElement[];  // an array containing the Components will display, these components should be the same
+    children: ReactElement[];                   // an array containing the Components will display, these components should be the same
     header: string[];                           // the header for each column
     colTemplate: string;                        // The template on how the rows should be displayed. Uses grid-template-columns
     columns?: number;                           // the amount of columns that the table should display at once
-    style?: CSSProperties;
+    style?: CSSProperties;                      // a way to style the table in-line if desired
 }
 
 
-interface RowProps { children: ReactElement[] }
-
-export function Row(props: RowProps) {
+/**
+ * Wrapper intended to be used with Table. Formats ReactElements to better work within the table's rows.
+ *
+ * @param children the child elements of the row
+ */
+export function Row({ children }: {children: ReactElement[]}): ReactElement {
     return (
         <div className="table-row" role="row">
-            {props.children.map(item => ( /* Wrap everything in a div so it'll display correctly */
+            {children.map(item => ( /* Wrap everything in a div so it'll display correctly */
                 <div className="row-child">
                     {item}
                 </div>
@@ -25,22 +28,29 @@ export function Row(props: RowProps) {
 }
 
 
+/**
+ * A column of the Table. Each Column contains it's own sub-columns that are enforced through a grid.
+ *
+ * @param header the header for the column, gives labels for each sub-column of the column
+ * @param children the Rows of the table
+ * @param colTemplate the way that the rows of the table should be laid out.
+ * @param isLast Whether this is the last column in the table
+ */
 function Column(
-    {header, children, isLast}:
-    {header: string[]; children: ReactElement[]; isLast?: boolean}) {
+    {header, children, colTemplate, isLast}:
+    {header: string[]; children: ReactElement[]; colTemplate: string; isLast?: boolean}) {
     isLast === undefined ? isLast = false : null;
 
     return (
         <div className="column-container">
-            <div className="column-grid" style={{"--cols": "1fr 2fr"}}>
+            <div className="column-grid" style={{"--cols": colTemplate}}>
                 <div className="column-header" style={isLast ? {"--header-toggle": "none"} : {"--header-toggle": "\"\""}} role="columnheader">
                     {
                         header.map((item) => (
                             <div className="row-child">
                                 <p><b>{item}</b></p>
                             </div>
-                    ))
-                    }
+                    ))}
                 </div>
                 {children}
             </div>
@@ -62,7 +72,7 @@ export default function Table(props: TableProps) {
 
     for (let i = 0; i < numColumns; i++) {
         components.push(
-            <Column header={props.header} key={i}>
+            <Column header={props.header} colTemplate={props.colTemplate} key={i}>
                 {props.children.filter(
                     (_, j) => {
                         return j % numColumns === i
