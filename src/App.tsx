@@ -14,7 +14,7 @@ function App() {
 
   return (
     <main style={{backgroundColor: "darkgray"}}>
-        <Table header={["lorum", "ipsum"]} colTemplate="1fr 2fr" columns={2} style={{width: "500px", height: "300px"}}>
+        <Table header={["lorum", "ipsum"]} colTemplate="1fr 1fr" columns={2} className="main-table">
             <Row>
                 <p>blah1</p>
                 <p>blah2</p>

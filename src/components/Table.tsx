@@ -7,6 +7,7 @@ export interface TableProps {
     colTemplate: string;                        // The template on how the rows should be displayed. Uses grid-template-columns
     columns?: number;                           // the amount of columns that the table should display at once
     style?: CSSProperties;                      // a way to style the table in-line if desired
+    className?: string;                         // CSS className for the table
 }
 
 
@@ -69,6 +70,7 @@ export default function Table(props: TableProps) {
     const components: Array<ReactElement> = []
     const numColumns = props.columns === undefined ? 1 : props.columns;
     const tableStyle = props.style === undefined ? {} : props.style;
+    const styleName = props.className === undefined ? "" : props.className;
 
     for (let i = 0; i < numColumns; i++) {
         components.push(
@@ -82,7 +84,7 @@ export default function Table(props: TableProps) {
     }
 
     return (
-        <div className="table-container" style={tableStyle} role="table">
+        <div className={`table-container ${styleName}`} style={tableStyle} role="table">
             {components}
         </div>
     )
