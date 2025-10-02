@@ -1,0 +1,10 @@
+@import "../globals.css";
+
+.hudbar-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    height: 7vh;
+    color: var(--text-default);
+    background-color: var(--secondary-black)
+}

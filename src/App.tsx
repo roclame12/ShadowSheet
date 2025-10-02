@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "./CSS/globals.css"
-import Table, { Row } from "./components/Table.tsx";
+import HudBar from "./components/HudBar.tsx";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -13,62 +13,9 @@ function App() {
   }
 
   return (
-    <main style={{backgroundColor: "darkgray"}}>
-        <Table header={["lorum", "ipsum"]} colTemplate="1fr 1fr" columns={2} className="main-table">
-            <Row>
-                <p>blah1</p>
-                <p>blah2</p>
-            </Row>
-            <Row>
-                <p>blah3</p>
-                <p>blah4</p>
-            </Row>
-            <Row>
-                <p>blah5</p>
-                <p>blah6</p>
-            </Row>
-            <Row>
-                <p>blah7</p>
-                <p>blah8</p>
-            </Row>
-            <Row>
-                <p>blah9</p>
-                <p>blah10</p>
-            </Row>
-            <Row>
-                <p>blah1</p>
-                <p>blah2</p>
-            </Row>
-            <Row>
-                <p>blah3</p>
-                <p>blah4</p>
-            </Row>
-            <Row>
-                <p>blah5</p>
-                <p>blah6</p>
-            </Row>
-            <Row>
-                <p>blah7</p>
-                <p>blah8</p>
-            </Row>
-            <Row>
-                <p>blah9</p>
-                <p>blah10</p>
-            </Row>
-            <Row>
-                <p>blah 11</p>
-                <p>blah 12</p>
-            </Row>
-            <Row>
-                <p>blah 11</p>
-                <p>blah 12</p>
-            </Row>
-            <Row>
-                <p>blah 11</p>
-                <p>blah 12</p>
-            </Row>
-        </Table>
-
+    <main style={{display: "flex", flexDirection: "column", height: "100vh", width: "100vw"}}>
+        <HudBar/>
+        <div style={{width:'100%', flex:1, backgroundColor:"var(--background-black)"}}/>
     </main>
   );
 }

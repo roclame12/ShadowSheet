@@ -1,8 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
 :root {
     /* Blacks */
     --background-black: #292A27;
     --primary-black: #3C3D37;
-    --secondary-black: #1E201E;
+    --secondary-black: #181918;
 
     /* Whites */
     --primary-white: #D9D9D9;
@@ -14,4 +21,7 @@
     --text-positive: #4E9A06;
     --text-negative: #D42020;
     --text-info: #FEFE1D;
+
+    /* Font Behavior */
+    font-family: "ui-monospace", sans-serif;
 }
