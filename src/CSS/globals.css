@@ -18,6 +18,7 @@
     /* Text colors */
     --text-default: white;
     --text-invert: black;
+    --text-header: #A8A8A8;
     --text-positive: #4E9A06;
     --text-negative: #D42020;
     --text-info: #FEFE1D;
