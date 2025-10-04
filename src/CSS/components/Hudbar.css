@@ -3,7 +3,7 @@
 .stat-container {
     display: flex;
     flex-direction: row;
-    gap: 3px;
+    gap: 5px;
 }
 
 .stat-header {
@@ -21,7 +21,7 @@
     flex-direction: row;
     width: 100vw;
     height: 7vh;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     color: var(--text-default);
     background-color: var(--secondary-black)
