@@ -8,12 +8,12 @@
 
 .stat-header {
     color: var(--text-header);
-    font-size: .9rem;
+    font-size: var(--font-xxs);
     text-decoration: underline;
 }
 
 .stat-text {
-    font-size: 1.725rem;
+    font-size: var(--font-l);
 }
 
 .hudbar-container {
