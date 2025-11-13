@@ -15,7 +15,8 @@ function App() {
   return (
     <main style={{display: "flex", flexDirection: "column", height: "100vh", width: "100vw"}}>
         <HudBar/>
-        <div style={{width:'100%', flex:1, backgroundColor:"var(--background-black)"}}/>
+        <div style={{width:'100%', flex:1, backgroundColor:"var(--background-black)"}}>
+        </div>
     </main>
   );
 }

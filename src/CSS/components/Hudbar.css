@@ -29,6 +29,10 @@
     width: var(--font-size-m);
 }
 
+.upgrade-button-icon:hover {
+    width: var(--font-size-l);
+}
+
 .hudbar-container {
     display: flex;
     flex-direction: row;

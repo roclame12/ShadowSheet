@@ -1,5 +1,5 @@
 import "../CSS/components/Hudbar.css"
-import {ReactElement} from "react";
+import {ReactElement, useState} from "react";
 
 
 interface StatProps {
@@ -44,10 +44,17 @@ function TextStat(props: TextStatProps) {
 }
 
 
-function UpgradeButton() {
+function UpgradeButton({isActive, setActive}: {isActive: boolean, setActive: React.Dispatch<React.SetStateAction<boolean>>}) {
+    const imgSrc = isActive ? "/icons/close.svg" : "/icons/arrow_upward.svg";
+    const titleStr = isActive ? "Finish Upgrading?" : "Upgrade Your character's stats?";
+
     return (
-        <button className="upgrade-button">
-            <img src="/icons/arrow_upward.svg" alt="upgrade character" className="upgrade-button-icon"/>
+        <button
+            className="upgrade-button"
+            title={ titleStr }
+            onClick={() => { setActive(!isActive); }}
+        >
+            <img src={ imgSrc } alt="upgrade character" className="upgrade-button-icon"/>
         </button>
     )
 }
@@ -58,13 +65,14 @@ export interface HudBarProps {
 }
 
 export default function HudBar(props: HudBarProps) {
+    const [isActive, setActive] = useState(false);
 
     return (
         <div className="hudbar-container">
             <TextStat statName="Name" statText="John Smith"/>
             <Stat statName="Health" current={ 120 } max={ 123 } decoration={ <b className="stat-modifier">-1</b> }/>
             <Stat statName="Stun" current={ 120 } max={ 123 } decoration={ <b className="stat-modifier">-1</b> }/>
-            <Stat statName="Karma" current={ 123 } max={ 456 } separator="|" decoration={ <UpgradeButton/> }/>
+            <Stat statName="Karma" current={ 123 } max={ 456 } separator="|" decoration={ <UpgradeButton isActive={ isActive } setActive={ setActive }/> }/>
             <TextStat statName="Money" statText="1234567890" decoration={ <p className="stat-text" >¥</p> }/>
         </div>
     )
