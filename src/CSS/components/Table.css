@@ -6,7 +6,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     background: var(--primary-black);
-    color: var(--text-default);
+    color: var(--text-color);
 }
 
 .table-row {
@@ -31,7 +31,7 @@
 
 .column-header {
     position: relative;
-    color: var(--text-invert);
+    color: var(--text-color-invert);
     background-color: var(--primary-white);
     display: grid;
     grid-column: 1/-1;

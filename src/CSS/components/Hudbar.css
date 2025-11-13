@@ -7,13 +7,26 @@
 }
 
 .stat-header {
-    color: var(--text-header);
-    font-size: var(--font-xxs);
+    color: var(--text-color-header);
+    font-size: var(--font-size-xxs);
     text-decoration: underline;
 }
 
-.stat-text {
-    font-size: var(--font-l);
+.stat-text { font-size: var(--font-size-l); }
+
+.stat-modifier {
+    font-size: var(--font-size-xxs);
+    color: var(--text-color-neg)
+}
+
+.upgrade-button {
+    background-color: var(--secondary-black);
+    border: none;
+    height: var(--font-size-xxs);
+}
+
+.upgrade-button-icon {
+    width: var(--font-size-m);
 }
 
 .hudbar-container {
@@ -23,6 +36,6 @@
     height: 7vh;
     justify-content: space-around;
     align-items: center;
-    color: var(--text-default);
+    color: var(--text-color);
     background-color: var(--secondary-black)
 }

@@ -44,8 +44,17 @@ function TextStat(props: TextStatProps) {
 }
 
 
-export interface HudBarProps {
+function UpgradeButton() {
+    return (
+        <button className="upgrade-button">
+            <img src="/icons/arrow_upward.svg" alt="upgrade character" className="upgrade-button-icon"/>
+        </button>
+    )
+}
 
+
+export interface HudBarProps {
+    // leaving this blank in the case I'll need some props later
 }
 
 export default function HudBar(props: HudBarProps) {
@@ -53,10 +62,10 @@ export default function HudBar(props: HudBarProps) {
     return (
         <div className="hudbar-container">
             <TextStat statName="Name" statText="John Smith"/>
-            <Stat statName="Health" current={123} max={123}/>
-            <Stat statName="Stun" current={123} max={123}/>
-            <Stat statName="Karma" current={123} max={123} separator="|"/>
-            <TextStat statName="Money" statText="1234567890" decoration={<p className="stat-text">¥</p>}/>
+            <Stat statName="Health" current={ 120 } max={ 123 } decoration={ <b className="stat-modifier">-1</b> }/>
+            <Stat statName="Stun" current={ 120 } max={ 123 } decoration={ <b className="stat-modifier">-1</b> }/>
+            <Stat statName="Karma" current={ 123 } max={ 456 } separator="|" decoration={ <UpgradeButton/> }/>
+            <TextStat statName="Money" statText="1234567890" decoration={ <p className="stat-text" >¥</p> }/>
         </div>
     )
 }

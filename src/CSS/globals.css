@@ -1,6 +1,6 @@
 @font-face {
     font-family: "jetbrains mono";
-    src: url("../../public/fonts/JetBrainsMono.ttf");
+    src: url("/fonts/JetBrainsMono.ttf");
 }
 
 * {
@@ -8,7 +8,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 
 :root {
     /* Blacks */
@@ -21,22 +20,22 @@
     --secondary-white: #A8A8A8;
 
     /* Text colors */
-    --text-default: white;
-    --text-invert: black;
-    --text-header: #A8A8A8;
-    --text-positive: #4E9A06;
-    --text-negative: #D42020;
-    --text-info: #FEFE1D;
-
+    --text-color: white;
+    --text-color-invert: black;
+    --text-color-header: #A8A8A8;
+    --text-color-pos: #4E9A06;
+    --text-color-neg: #D42020;
+    --text-color-info: #FEFE1D;
+    
     /* Font Behavior */
     font-family: "jetbrains mono", "ui-monospace", sans-serif;
-    /* Reactive type made using Utopia's font calculator https://utopia.fyi/type/calculator?c=640,17,1.067,2560,21,1.2,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-    --font-xxs: clamp(0.9115rem, 0.9405rem + -0.0182vw, 0.9333rem);
-    --font-xs: clamp(0.9958rem, 0.9631rem + 0.0816vw, 1.0938rem);
-    --font-s: clamp(1.0625rem, 0.9792rem + 0.2083vw, 1.3125rem);
-    --font-m: clamp(1.1337rem, 0.9866rem + 0.3678vw, 1.575rem);
-    --font-l: clamp(1.2096rem, 0.9829rem + 0.567vw, 1.89rem);
-    --font-xl: clamp(1.2907rem, 0.9649rem + 0.8144vw, 2.268rem);
-    --font-xxl: clamp(1.3772rem, 0.929rem + 1.1204vw, 2.7216rem);
-    --font-3xl: clamp(1.4694rem, 0.8706rem + 1.4971vw, 3.2659rem);
+    /* Reactive type generated w/ Utopia's font calculator https://utopia.fyi/type/calculator?c=640,17,1.067,2560,21,1.2,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    --font-size-xxs: clamp(0.9115rem, 0.9405rem + -0.0182vw, 0.9333rem);
+    --font-size-xs: clamp(0.9958rem, 0.9631rem + 0.0816vw, 1.0938rem);
+    --font-size-s: clamp(1.0625rem, 0.9792rem + 0.2083vw, 1.3125rem);
+    --font-size-m: clamp(1.1337rem, 0.9866rem + 0.3678vw, 1.575rem);
+    --font-size-l: clamp(1.2096rem, 0.9829rem + 0.567vw, 1.89rem);
+    --font-size-xl: clamp(1.2907rem, 0.9649rem + 0.8144vw, 2.268rem);
+    --font-size-xxl: clamp(1.3772rem, 0.929rem + 1.1204vw, 2.7216rem);
+    --font-size-3xl: clamp(1.4694rem, 0.8706rem + 1.4971vw, 3.2659rem);
 }
