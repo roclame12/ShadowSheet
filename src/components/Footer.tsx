@@ -24,7 +24,7 @@ export default function Footer() {
             </button>
         )
         ;
-        elements.push(<p className="separator"> | </p>);
+        i !== pageNames.length - 1 ? elements.push(<p className="separator"> | </p>) : elements.push();
     }
 
     return (

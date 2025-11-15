@@ -9,12 +9,21 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
+    background-color: var(--background-black);
 }
 
 .footer-button {
-    font-size: var(--font-size-l);
+    font-size: var(--font-size-xl);
+    color: var(--text-color);
+
+    background-color: var(--background-black);
+
+    border: none;
+    margin: 0 .5vw
 }
 
 .separator {
-    font-size: var(--font-size-l);
+    font-size: var(--font-size-xl);
+    color: var(--text-color);
 }
