@@ -1,5 +1,5 @@
 import "../CSS/components/Hudbar.css"
-import {ReactElement, useState} from "react";
+import { ReactElement, useState } from "react";
 
 
 interface StatProps {

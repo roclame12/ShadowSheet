@@ -2,6 +2,7 @@ import { useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import "./CSS/globals.css"
 import HudBar from "./components/HudBar.tsx";
+import Footer from "./components/Footer";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -17,6 +18,7 @@ function App() {
         <HudBar/>
         <div style={{width:'100%', flex:1, backgroundColor:"var(--background-black)"}}>
         </div>
+        <Footer/>
     </main>
   );
 }

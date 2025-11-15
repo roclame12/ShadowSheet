@@ -38,4 +38,7 @@
     --font-size-xl: clamp(1.2907rem, 0.9649rem + 0.8144vw, 2.268rem);
     --font-size-xxl: clamp(1.3772rem, 0.929rem + 1.1204vw, 2.7216rem);
     --font-size-3xl: clamp(1.4694rem, 0.8706rem + 1.4971vw, 3.2659rem);
+
+    /* Sizing details */
+    --edge-component-height: 7vh
 }
