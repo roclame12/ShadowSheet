@@ -1,0 +1,26 @@
+@import "../globals.css";
+
+
+.input-box-container {
+    display: flex;
+    flex-direction: row;
+    gap: var(--font-size-xxs);
+    color: var(--text-color);
+}
+
+.input-box-header {
+    color: var(--text-color-header);
+    font-size: var(--font-size-xxs);
+    font-weight: normal;
+}
+
+.input-box-input {
+    font-size: var(--font-size-m);
+    color: var(--text-color);
+    text-align: right;
+    padding: .2ex .25em .2ex 0;
+
+    background-color: var(--primary-black);
+    border: 1px solid var(--secondary-black);
+    border-radius: 4px;
+}
