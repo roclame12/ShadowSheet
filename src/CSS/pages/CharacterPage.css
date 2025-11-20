@@ -1,9 +1,13 @@
 @import "../globals.css";
 
 
+/* <InputBox> classes */
 .input-box-container {
     display: flex;
     flex-direction: row;
+    box-sizing: border-box;
+    width: 100%;
+
     gap: var(--font-size-xxs);
     color: var(--text-color);
 }
@@ -15,6 +19,9 @@
 }
 
 .input-box-input {
+    flex: 1;
+    min-width: 0;
+
     font-size: var(--font-size-m);
     color: var(--text-color);
     text-align: right;
@@ -24,3 +31,31 @@
     border: 1px solid var(--secondary-black);
     border-radius: 4px;
 }
+
+
+/* <PersonalData> classes */
+.personal-data-container {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+}
+
+.personal-data-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-areas:
+            "meta-type   meta-type   meta-type ethnicity ethnicity ethnicity"
+            "age         age         height    height    weight    weight"
+            "street-cred street-cred notoriety notoriety awareness awareness";
+    gap: .5vh 1vw;
+}
+
+#meta-type { grid-area: meta-type; }
+#ethnicity { grid-area: ethnicity; }
+#age { grid-area: age; }
+#height { grid-area: height; }
+#weight { grid-area: weight; }
+#street-cred  { grid-area: street-cred; }
+#notoriety  { grid-area: notoriety; }
+#awareness  { grid-area: awareness; }
