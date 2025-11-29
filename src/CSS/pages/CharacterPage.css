@@ -5,7 +5,6 @@
 .input-box-container {
     display: flex;
     flex-direction: row;
-    box-sizing: border-box;
     width: 100%;
 
     gap: var(--font-size-xxs);
@@ -15,17 +14,23 @@
 .input-box-header {
     color: var(--text-color-header);
     font-size: var(--font-size-xxs);
-    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: right;
+    text-wrap: nowrap;
+
+    width: 35%;
 }
 
-.input-box-input {
+.input-box-body {
+    display: flex;
+    flex-direction: row;
     flex: 1;
     min-width: 0;
 
-    font-size: var(--font-size-m);
-    color: var(--text-color);
-    text-align: right;
-    padding: .2ex .25em .2ex 0;
+
+    font-size: var(--font-size-s);
+    padding: .4ex .25em .4ex 0;
 
     background-color: var(--primary-black);
     border: 1px solid var(--secondary-black);
@@ -33,17 +38,41 @@
 }
 
 
+.input-box-input {
+    flex: 1;
+    min-width: inherit;
+
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    text-align: right;
+
+
+    background-color: inherit;
+    border: none;
+}
+
+.input-box-input:focus { outline: none; }
+
+.input-box-suffix {
+    padding-left: 1ch;
+}
+
+
 /* <PersonalData> classes */
 .personal-data-container {
     display: flex;
     flex-direction: column;
+    flex-wrap: nowrap;
+    width: 40%;
+    overflow: scroll;
 
     gap: 15px;
 }
 
 .personal-data-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(6, minmax(70px, 1fr));
     grid-template-areas:
             "meta-type   meta-type   meta-type ethnicity ethnicity ethnicity"
             "age         age         height    height    weight    weight"

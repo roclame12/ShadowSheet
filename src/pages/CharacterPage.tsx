@@ -1,6 +1,6 @@
 import "../CSS/pages/CharacterPage.css"
 import Header from "../components/Header.tsx";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 
 interface InputBoxProps {
@@ -8,29 +8,40 @@ interface InputBoxProps {
     value: string,
     onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
     maxLen?: number,
+    suffix?: string,
     title?: string,
     id?: string
 }
 
 function InputBox(props: InputBoxProps) {
+    const focusRef = useRef<HTMLInputElement>(null);
+
     return (
-        <div className="input-box-container" id={props.id}>
+        <div
+            className="input-box-container"
+            id={props.id}
+            onClick={ () => { if (focusRef.current) focusRef.current.focus() } }
+        >
             <h2 className="input-box-header">{ props.header }</h2>
-            <input
-                type="text"
-                value={ props.value }
-                onChange={ props.onChange }
-                maxLength={props.maxLen}
-                title={props.title}
-                className="input-box-input"
-            />
+            <div className="input-box-body">
+                <input
+                    type="text"
+                    ref={ focusRef }
+                    value={ props.value }
+                    onChange={ props.onChange }
+                    maxLength={ props.maxLen }
+                    title={ props.title }
+                    className="input-box-input"
+                />
+                { props.suffix ? <p className="input-box-suffix">{ props.suffix }</p> : null }
+            </div>
         </div>
     )
 }
 
 
 function PersonalData() {
-    const [metaType, setMetaType] = useState<string>("human");
+    const [metaType, setMetaType] = useState<string>("human guy");
     const [ethnicity, setEthnicity] = useState<string>("Italian?");
     const [age, setAge] = useState<string>("21");
     const [height, setHeight] = useState<string>("123");
@@ -66,21 +77,21 @@ function PersonalData() {
             <Header>Personal Data</Header>
             <div className="personal-data-grid">
                 <InputBox
-                    header="Metatype"
+                    header="Metatype:"
                     value={metaType}
                     id="meta-type"
                     onChange={ handleInput(setMetaType) }
                 />
 
                 <InputBox
-                    header="Ethnicity"
+                    header="Ethnicity:"
                     value={ethnicity}
                     id="ethnicity"
                     onChange={ handleInput(setEthnicity) }
                 />
 
                 <InputBox
-                    header="Age"
+                    header="Age:"
                     value={age}
                     maxLen={4}
                     id="age"
@@ -88,23 +99,25 @@ function PersonalData() {
                 />
 
                 <InputBox
-                    header="Height"
+                    header="Height:"
                     value={height}
                     maxLen={4}
+                    suffix="in."
                     id="height"
                     onChange={ handleInputConditional(setHeight, /^\d*$/) }
                 />
 
                 <InputBox
-                    header="Weight"
+                    header="Weight:"
                     value={weight}
-                    maxLen={9}
+                    maxLen={4}
+                    suffix="lbs."
                     id="weight"
                     onChange={ handleInputConditional(setWeight, /^\d*$/) }
                 />
 
                 <InputBox
-                    header="S. Cred"
+                    header="S. Cred:"
                     value={cred}
                     maxLen={4}
                     id="street-cred"
@@ -112,7 +125,7 @@ function PersonalData() {
                 />
 
                 <InputBox
-                    header="Notoriety"
+                    header="Notoriety:"
                     value={notoriety}
                     maxLen={4}
                     id="notoriety"
@@ -120,7 +133,7 @@ function PersonalData() {
                 />
 
                 <InputBox
-                    header="Awareness"
+                    header="Awareness:"
                     value={awareness}
                     maxLen={4}
                     id="awareness"
