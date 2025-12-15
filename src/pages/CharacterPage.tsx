@@ -17,20 +17,15 @@ function InputBox(props: InputBoxProps) {
     const focusRef = useRef<HTMLInputElement>(null);
 
     return (
-        <div
-            className="input-box-container"
-            id={props.id}
-            onClick={ () => { if (focusRef.current) focusRef.current.focus() } }
-        >
-            <h2 className="input-box-header">{ props.header }</h2>
-            <div className="input-box-body">
+        <div className="input-container" id={props.id}>
+            <h2 className="input-box-header" title={ props.title }>{ props.header }</h2>
+            <div className="input-box-body" onClick={ () => { if (focusRef.current) focusRef.current.focus() } }>
                 <input
                     type="text"
                     ref={ focusRef }
                     value={ props.value }
                     onChange={ props.onChange }
                     maxLength={ props.maxLen }
-                    title={ props.title }
                     className="input-box-input"
                 />
                 { props.suffix ? <p className="input-box-suffix">{ props.suffix }</p> : null }
@@ -40,8 +35,35 @@ function InputBox(props: InputBoxProps) {
 }
 
 
+interface Option {
+    value: string,
+    label: string
+}
+
+
+interface DropDownProps {
+    header: string,
+    options: Option[],
+    selected: Option,
+    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+    title?: string,
+    id?: string
+}
+
+function DropDown(props: DropDownProps) {
+
+    return (
+        <div className="input-container" id={props.id}>
+            <h2 className="input-box-header">{ props.header }</h2>
+            <div className="input-box-body">
+            </div>
+        </div>
+    )
+}
+
+
 function PersonalData() {
-    const [metaType, setMetaType] = useState<string>("human guy");
+    const [metaType, setMetaType] = useState<Option | null>(null);
     const [ethnicity, setEthnicity] = useState<string>("Italian?");
     const [age, setAge] = useState<string>("21");
     const [height, setHeight] = useState<string>("123");
@@ -73,20 +95,36 @@ function PersonalData() {
     }
 
     return (
-        <div className="personal-data-container" style={{ /*display: "flex", flexDirection: "column", gap: 15 */}}>
+        <div className="personal-data-container">
             <Header>Personal Data</Header>
             <div className="personal-data-grid">
+                {/*
                 <InputBox
                     header="Metatype:"
                     value={metaType}
                     id="meta-type"
                     onChange={ handleInput(setMetaType) }
                 />
+                */}
+
+                <DropDown
+                    header={"Metatype:"}
+                    options={[
+                        {value: "human", label: "Human"},
+                        {value: "elf", label: "Elf"},
+                        {value: "ork", label: "Ork"},
+                        {value: "troll", label: "Troll"},
+                    ]}
+                    id="meta-type"
+                    selected={ metaType }
+                    onChange={ (e: React.ChangeEvent<Select>) => { setMetaType(e.target.value)} }
+                />
 
                 <InputBox
                     header="Ethnicity:"
                     value={ethnicity}
                     id="ethnicity"
+                    title="The ethnic origin of your character"
                     onChange={ handleInput(setEthnicity) }
                 />
 

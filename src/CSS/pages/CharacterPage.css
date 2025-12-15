@@ -2,14 +2,41 @@
 
 
 /* <InputBox> classes */
-.input-box-container {
+.input-container {
     display: flex;
     flex-direction: row;
-    width: 100%;
 
     gap: var(--font-size-xxs);
     color: var(--text-color);
+
+    .dropdown-select {
+        width: 100%;
+        font-size: var(--font-size-s);
+    }
+
+    .dropdown-select__control {
+        background-color: transparent;
+        border: none;
+        color: var(--text-color) !important;
+    }
+
+    .dropdown-select__control--is-focused {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .dropdown-select__menu-list {
+        background-color: var(--primary-black);
+    }
+
+    .dropdown-select__single-value {
+        color: var(--text-color) !important;
+    }
 }
+
+
+
+
 
 .input-box-header {
     color: var(--text-color-header);
@@ -63,9 +90,7 @@
 .personal-data-container {
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
     width: 40%;
-    overflow: scroll;
 
     gap: 15px;
 }

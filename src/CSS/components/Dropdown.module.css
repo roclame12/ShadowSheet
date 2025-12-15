@@ -1,0 +1,40 @@
+@import "../globals.css";
+
+.btn {
+    background-color: var(--background-black);
+    border: none;
+
+    .icon { width: 1em; }
+
+    .iconFlipped { transform: scaleY(-1); }
+}
+
+
+.container {
+    position: relative;
+
+    font-family: inherit;
+    color: var(--text-color);
+    background-color: var(--background-black);
+}
+
+.input-box {
+
+}
+
+.item {
+    all: unset;
+    width: 100%;
+    transition: background-color var(--animation-fast) ease-in-out;
+
+    &:hover { background-color: var(--secondary-black); }
+}
+
+.menu {
+    background-color: var(--primary-black);
+
+    position: absolute;
+
+    width: 100%;
+    border-radius: 5px;
+}
