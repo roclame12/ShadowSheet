@@ -1,4 +1,4 @@
-import React, {ReactElement, useState, createContext, useContext} from "react"
+import React, {ReactElement, useState, createContext, useContext, useEffect, useRef} from "react"
 import styles from "../CSS/components/Dropdown.module.css"
 
 interface keyPair {
@@ -8,6 +8,30 @@ interface keyPair {
 
 const selectedContext = createContext<React.Dispatch<React.SetStateAction<keyPair>> | null>(null);
 const visibleContext = createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
+
+
+/**
+ * Custom React hook that allows for the dropdown to be "light Dismissed", allowing for the Dropdown menu to
+ * be dismissed whenever the user clicks outside the menu
+ *
+ * @param setIsExpanded the setter for the state variable that expands the menu
+ */
+function useLightDismiss(setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>) {
+    const ref = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        function handleClick(e: MouseEvent) {
+            // if the HTML reference is valid and the mouse click is outside the div, close the dropdown menu
+            if (ref.current && !ref.current.contains(e.target as Node)) setIsExpanded(false);
+        }
+
+        document.addEventListener("mousedown", handleClick);
+        return () => { document.removeEventListener("mousedown", handleClick); }
+    }, []);
+
+    return ref;
+}
+
 
 function ExpandBtn(
     {isActive, setActive}:
@@ -65,10 +89,12 @@ interface DropDownMenuProps {
 }
 
 function DropDownMenu(props: DropDownMenuProps) {
+    const dismissRef = useLightDismiss(props.setExpanded)
+
     return (
-        <visibleContext.Provider value={props.setExpanded}>
-            <selectedContext.Provider value={props.setSelected}>
-                <div className={ styles.menu }>
+        <visibleContext.Provider value={ props.setExpanded }>
+            <selectedContext.Provider value={ props.setSelected }>
+                <div className={ styles.menu } ref={ dismissRef }>
                     { props.isExpanded && props.children }
                 </div>
             </selectedContext.Provider>
@@ -88,7 +114,7 @@ export default function DropDown(props: DropDownProps): ReactElement{
 
     return (
         <div className={ styles.container }>
-            <div style={{width: "100px", display: "flex", flexDirection: "row"}}>
+            <div style={{width: "100px", display: "flex", flexDirection: "row"}} onClick={() => {setExpanded(!isExpanded)}}>
                 <p>{selected.label}</p>
                 <ExpandBtn isActive={ isExpanded } setActive={ setExpanded }/>
             </div>
