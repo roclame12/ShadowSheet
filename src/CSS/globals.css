@@ -57,9 +57,21 @@
 }
 
 /* classes common to many components */
-.page-container {
+.global-page-container {
     width: 100%;
     flex: 1;
     background-color: var(--background-black);
     padding: 1vh 1vw;
 }
+
+
+.global-text-box-body {
+    padding: .4ex .25em .4ex 0;
+
+    background-color: var(--primary-black);
+    border: 1px solid var(--secondary-black);
+    border-radius: 4px;
+}
+
+
+.foo { width: 10vw; }

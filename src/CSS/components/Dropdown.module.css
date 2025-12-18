@@ -1,7 +1,7 @@
 @import "../globals.css";
 
 .btn {
-    background-color: var(--background-black);
+    background-color: transparent;
     border: none;
 
     .icon { width: 1em; }
@@ -16,10 +16,24 @@
     font-family: inherit;
     color: var(--text-color);
     background-color: var(--background-black);
+    flex-wrap: nowrap;
 }
 
-.input-box {
+.inputBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+    flex-wrap: nowrap;
 
+    text-overflow: ellipsis;
+    font-size: inherit;
+
+    p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 }
 
 .item {
@@ -27,11 +41,11 @@
     width: 100%;
     transition: background-color var(--animation-fast) ease-in-out;
 
-    &:hover { background-color: var(--secondary-black); }
+    &:hover { background-color: var(--primary-black); }
 }
 
 .menu {
-    background-color: var(--primary-black);
+    background-color: var(--secondary-black);
 
     position: absolute;
 

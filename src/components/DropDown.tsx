@@ -47,13 +47,13 @@ function ExpandBtn(
 }
 
 
-interface DropDownItemProps {
+interface DDItemProps {
     children: string;
     value?: string | number;
 }
 
 
-export function DropDownItem (props: DropDownItemProps) {
+export function DDItem (props: DDItemProps) {
     const itemPair: keyPair = {
         label: props.children,
         value: props.value ? props.value : props.children
@@ -89,12 +89,11 @@ interface DropDownMenuProps {
 }
 
 function DropDownMenu(props: DropDownMenuProps) {
-    const dismissRef = useLightDismiss(props.setExpanded)
 
     return (
         <visibleContext.Provider value={ props.setExpanded }>
             <selectedContext.Provider value={ props.setSelected }>
-                <div className={ styles.menu } ref={ dismissRef }>
+                <div className={ styles.menu }>
                     { props.isExpanded && props.children }
                 </div>
             </selectedContext.Provider>
@@ -106,15 +105,21 @@ function DropDownMenu(props: DropDownMenuProps) {
 interface DropDownProps {
     children: ReactElement[];
     className?: string;
+    id?: string;
 }
 
 export default function DropDown(props: DropDownProps): ReactElement{
     const [isExpanded, setExpanded] = useState<boolean>(false)
     const [selected, setSelected] = useState<keyPair>({label: "", value: ""});
+    const dismissRef = useLightDismiss(setExpanded);
 
     return (
-        <div className={ styles.container }>
-            <div style={{width: "100px", display: "flex", flexDirection: "row"}} onClick={() => {setExpanded(!isExpanded)}}>
+        <div
+            id={props.id ? props.id : ""}
+            className={ `${styles.container} ${props.className ? props.className : ""}` }
+            ref={ dismissRef }
+        >
+            <div className={ `${styles.inputBox} global-text-box-body` } onClick={() => {setExpanded(!isExpanded)}}>
                 <p>{selected.label}</p>
                 <ExpandBtn isActive={ isExpanded } setActive={ setExpanded }/>
             </div>

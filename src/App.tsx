@@ -4,7 +4,7 @@ import "./CSS/globals.css"
 import HudBar from "./components/HudBar.tsx";
 import Footer from "./components/Footer";
 import CharacterPage from "./pages/CharacterPage.tsx";
-import DropDown, { DropDownItem } from "./components/DropDown.tsx";
+import DropDown, { DDItem } from "./components/DropDown.tsx";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -21,12 +21,12 @@ function App() {
             <CharacterPage/>
             <div style={{display: "flex", flexDirection: "row", width: "100vw", justifyContent: "space-evenly"}}>
                 <DropDown className="foo">
-                    <DropDownItem>Look</DropDownItem>
-                    <DropDownItem value="content">Some Content!</DropDownItem>
+                    <DDItem>Look</DDItem>
+                    <DDItem value="content">Some Content!</DDItem>
                 </DropDown>
-                <DropDown className="bar">
-                    <DropDownItem>Look Here!</DropDownItem>
-                    <DropDownItem>More content!</DropDownItem>
+                <DropDown>
+                    <DDItem>Look Here!</DDItem>
+                    <DDItem>More content!</DDItem>
                 </DropDown>
             </div>
         <Footer/>

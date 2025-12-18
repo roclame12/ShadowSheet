@@ -1,6 +1,7 @@
 import "../CSS/pages/CharacterPage.css"
 import Header from "../components/Header.tsx";
 import { useState, useRef } from "react";
+import DropDown, { DDItem } from "../components/DropDown.tsx";
 
 
 interface InputBoxProps {
@@ -29,33 +30,6 @@ function InputBox(props: InputBoxProps) {
                     className="input-box-input"
                 />
                 { props.suffix ? <p className="input-box-suffix">{ props.suffix }</p> : null }
-            </div>
-        </div>
-    )
-}
-
-
-interface Option {
-    value: string,
-    label: string
-}
-
-
-interface DropDownProps {
-    header: string,
-    options: Option[],
-    selected: Option,
-    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
-    title?: string,
-    id?: string
-}
-
-function DropDown(props: DropDownProps) {
-
-    return (
-        <div className="input-container" id={props.id}>
-            <h2 className="input-box-header">{ props.header }</h2>
-            <div className="input-box-body">
             </div>
         </div>
     )
@@ -107,18 +81,12 @@ function PersonalData() {
                 />
                 */}
 
-                <DropDown
-                    header={"Metatype:"}
-                    options={[
-                        {value: "human", label: "Human"},
-                        {value: "elf", label: "Elf"},
-                        {value: "ork", label: "Ork"},
-                        {value: "troll", label: "Troll"},
-                    ]}
-                    id="meta-type"
-                    selected={ metaType }
-                    onChange={ (e: React.ChangeEvent<Select>) => { setMetaType(e.target.value)} }
-                />
+                <DropDown id="meta-type">
+                    <DDItem>Human</DDItem>
+                    <DDItem>Elf</DDItem>
+                    <DDItem>Ork</DDItem>
+                    <DDItem>Troll</DDItem>
+                </DropDown>
 
                 <InputBox
                     header="Ethnicity:"
@@ -186,7 +154,7 @@ function PersonalData() {
 export default function CharacterPage() {
 
     return (
-        <div className="page-container">
+        <div className="global-page-container">
             <PersonalData/>
         </div>
     )
