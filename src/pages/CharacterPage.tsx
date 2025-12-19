@@ -1,4 +1,4 @@
-import "../CSS/pages/CharacterPage.css"
+import styles from "../CSS/pages/CharacterPage.module.css"
 import Header from "../components/Header.tsx";
 import { useState, useRef } from "react";
 import DropDown, { DDItem } from "../components/DropDown.tsx";
@@ -18,26 +18,24 @@ function InputBox(props: InputBoxProps) {
     const focusRef = useRef<HTMLInputElement>(null);
 
     return (
-        <div className="input-container" id={props.id}>
-            <h2 className="input-box-header" title={ props.title }>{ props.header }</h2>
-            <div className="input-box-body" onClick={ () => { if (focusRef.current) focusRef.current.focus() } }>
+        <label className={styles.inputBox} title={props.title} id={props.id}>
+            {props.header}
+            <div className={`${styles.body} global-text-box-body`} onClick={ () => { if (focusRef.current) focusRef.current.focus() } }>
                 <input
                     type="text"
                     ref={ focusRef }
                     value={ props.value }
                     onChange={ props.onChange }
                     maxLength={ props.maxLen }
-                    className="input-box-input"
                 />
-                { props.suffix ? <p className="input-box-suffix">{ props.suffix }</p> : null }
+                { props.suffix ? <p className={styles.suffix}>{ props.suffix }</p> : null }
             </div>
-        </div>
+        </label>
     )
 }
 
 
 function PersonalData() {
-    const [metaType, setMetaType] = useState<Option | null>(null);
     const [ethnicity, setEthnicity] = useState<string>("Italian?");
     const [age, setAge] = useState<string>("21");
     const [height, setHeight] = useState<string>("123");
@@ -69,19 +67,10 @@ function PersonalData() {
     }
 
     return (
-        <div className="personal-data-container">
+        <div className={styles.container}>
             <Header>Personal Data</Header>
-            <div className="personal-data-grid">
-                {/*
-                <InputBox
-                    header="Metatype:"
-                    value={metaType}
-                    id="meta-type"
-                    onChange={ handleInput(setMetaType) }
-                />
-                */}
-
-                <DropDown id="meta-type">
+            <div className={styles.grid}>
+                <DropDown id={styles.metaType}>
                     <DDItem>Human</DDItem>
                     <DDItem>Elf</DDItem>
                     <DDItem>Ork</DDItem>
@@ -91,7 +80,7 @@ function PersonalData() {
                 <InputBox
                     header="Ethnicity:"
                     value={ethnicity}
-                    id="ethnicity"
+                    id={styles.ethnicity}
                     title="The ethnic origin of your character"
                     onChange={ handleInput(setEthnicity) }
                 />
@@ -100,7 +89,7 @@ function PersonalData() {
                     header="Age:"
                     value={age}
                     maxLen={4}
-                    id="age"
+                    id={styles.age}
                     onChange={ handleInputConditional(setAge, /^\d*$/) }
                 />
 
@@ -109,7 +98,7 @@ function PersonalData() {
                     value={height}
                     maxLen={4}
                     suffix="in."
-                    id="height"
+                    id={styles.height}
                     onChange={ handleInputConditional(setHeight, /^\d*$/) }
                 />
 
@@ -118,7 +107,7 @@ function PersonalData() {
                     value={weight}
                     maxLen={4}
                     suffix="lbs."
-                    id="weight"
+                    id={styles.weight}
                     onChange={ handleInputConditional(setWeight, /^\d*$/) }
                 />
 
@@ -126,7 +115,7 @@ function PersonalData() {
                     header="S. Cred:"
                     value={cred}
                     maxLen={4}
-                    id="street-cred"
+                    id={styles.streetCred}
                     onChange={ handleInputConditional(setCred, /^\d*$/) }
                 />
 
@@ -134,7 +123,7 @@ function PersonalData() {
                     header="Notoriety:"
                     value={notoriety}
                     maxLen={4}
-                    id="notoriety"
+                    id={styles.notoriety}
                     onChange={ handleInputConditional(setNotoriety, /^\d*$/) }
                 />
 
@@ -142,7 +131,7 @@ function PersonalData() {
                     header="Awareness:"
                     value={awareness}
                     maxLen={4}
-                    id="awareness"
+                    id={styles.awareness}
                     onChange={ handleInputConditional(setAwareness, /^\d*$/) }
                 />
             </div>
