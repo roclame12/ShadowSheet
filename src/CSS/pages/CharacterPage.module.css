@@ -11,7 +11,6 @@
 
 }
 
-
 .inputBox {
     display: flex;
     flex-direction: row;
@@ -20,10 +19,8 @@
 
     color: var(--text-color-header);
     font-size: var(--font-size-xxs);
-    overflow: hidden;
     text-overflow: ellipsis;
     text-align: right;
-    text-wrap: nowrap;
 
     .body {
         display: flex;
@@ -48,6 +45,17 @@
         border: none;
     }
 
+    .dropDown {
+        flex: 1;
+        min-width: inherit;
+
+        font-family: inherit;
+        font-size: var(--font-size-s);
+        color: var(--text-color);
+        text-align: right;
+        background-color: transparent;
+    }
+
     .suffix {
         padding-left: 1ch;
     }
@@ -56,30 +64,31 @@
 .input-box-input:focus { outline: none; }
 
 
-/* <PersonalData> classes */
-.container {
+.personalData {
     display: flex;
     flex-direction: column;
     width: 40%;
 
     gap: 15px;
-}
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(70px, 1fr));
-    grid-template-areas:
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(70px, 1fr));
+        grid-template-areas:
             "meta-type   meta-type   meta-type ethnicity ethnicity ethnicity"
             "age         age         height    height    weight    weight"
             "street-cred street-cred notoriety notoriety awareness awareness";
-    gap: .5vh 1vw;
+        gap: .5vh 1vw;
+    }
+
+    #metaType { grid-area: meta-type; }
+    #metaTypeDropdown {}
+    #ethnicity { grid-area: ethnicity; }
+    #age { grid-area: age; }
+    #height { grid-area: height; }
+    #weight { grid-area: weight; }
+    #streetCred  { grid-area: street-cred; }
+    #notoriety  { grid-area: notoriety; }
+    #awareness  { grid-area: awareness; }
 }
 
-#metaType { grid-area: meta-type; }
-#ethnicity { grid-area: ethnicity; }
-#age { grid-area: age; }
-#height { grid-area: height; }
-#weight { grid-area: weight; }
-#streetCred  { grid-area: street-cred; }
-#notoriety  { grid-area: notoriety; }
-#awareness  { grid-area: awareness; }

@@ -1,16 +1,14 @@
 import styles from "../CSS/pages/CharacterPage.module.css"
 import Header from "../components/Header.tsx";
-import { useState, useRef } from "react";
+import {useState, useRef, ReactNode, ReactElement} from "react";
 import DropDown, { DDItem } from "../components/DropDown.tsx";
 
 
 interface InputBoxProps {
     header: string,
-    value: string,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-    maxLen?: number,
-    suffix?: string,
+    children: ReactNode,
     title?: string,
+    suffix?: string,
     id?: string
 }
 
@@ -21,18 +19,13 @@ function InputBox(props: InputBoxProps) {
         <label className={styles.inputBox} title={props.title} id={props.id}>
             {props.header}
             <div className={`${styles.body} global-text-box-body`} onClick={ () => { if (focusRef.current) focusRef.current.focus() } }>
-                <input
-                    type="text"
-                    ref={ focusRef }
-                    value={ props.value }
-                    onChange={ props.onChange }
-                    maxLength={ props.maxLen }
-                />
+                { props.children }
                 { props.suffix ? <p className={styles.suffix}>{ props.suffix }</p> : null }
             </div>
         </label>
     )
 }
+
 
 
 function PersonalData() {
@@ -67,73 +60,73 @@ function PersonalData() {
     }
 
     return (
-        <div className={styles.container}>
+        <div className={styles.personalData}>
             <Header>Personal Data</Header>
             <div className={styles.grid}>
-                <DropDown id={styles.metaType}>
-                    <DDItem>Human</DDItem>
-                    <DDItem>Elf</DDItem>
-                    <DDItem>Ork</DDItem>
-                    <DDItem>Troll</DDItem>
-                </DropDown>
+                <div className={styles.inputBox} id={styles.metaType}>
+                    <label htmlFor={styles.metaTypeDropdown}>Meta Type:</label>
+                    <DropDown className={styles.dropDown} id={styles.metaTypeDropdown}>
+                        <DDItem>Human</DDItem>
+                        <DDItem>Elf</DDItem>
+                        <DDItem>Ork</DDItem>
+                        <DDItem>Troll</DDItem>
+                    </DropDown>
+                </div>
 
-                <InputBox
-                    header="Ethnicity:"
-                    value={ethnicity}
-                    id={styles.ethnicity}
-                    title="The ethnic origin of your character"
-                    onChange={ handleInput(setEthnicity) }
-                />
+                <InputBox header="Ethnicity:" title="The ethnic origin of your character" id={styles.ethnicity}>
+                    <input
+                        value={ethnicity}
+                        onChange={ handleInput(setEthnicity) }
+                    />
+                </InputBox>
 
-                <InputBox
-                    header="Age:"
-                    value={age}
-                    maxLen={4}
-                    id={styles.age}
-                    onChange={ handleInputConditional(setAge, /^\d*$/) }
-                />
+                <InputBox header="Age:" id={styles.age}>
+                    <input
+                        value={age}
+                        maxLength={4}
+                        onChange={ handleInputConditional(setAge, /^\d*$/) }
+                    />
+                </InputBox>
 
-                <InputBox
-                    header="Height:"
-                    value={height}
-                    maxLen={4}
-                    suffix="in."
-                    id={styles.height}
-                    onChange={ handleInputConditional(setHeight, /^\d*$/) }
-                />
+                <InputBox header="Height:" suffix="in." id={styles.height}>
+                    <input
+                        value={height}
+                        maxLength={4}
+                        onChange={ handleInputConditional(setHeight, /^\d*$/) }
+                    />
+                </InputBox>
 
-                <InputBox
-                    header="Weight:"
-                    value={weight}
-                    maxLen={4}
-                    suffix="lbs."
-                    id={styles.weight}
-                    onChange={ handleInputConditional(setWeight, /^\d*$/) }
-                />
+                <InputBox header="Weight:" suffix="lbs." id={styles.weight}>
+                    <input
+                        value={weight}
+                        maxLength={4}
+                        onChange={ handleInputConditional(setWeight, /^\d*$/) }
+                    />
+                </InputBox>
 
-                <InputBox
-                    header="S. Cred:"
-                    value={cred}
-                    maxLen={4}
-                    id={styles.streetCred}
-                    onChange={ handleInputConditional(setCred, /^\d*$/) }
-                />
+                <InputBox header="S. Cred:" id={styles.streetCred}>
+                    <input
+                        value={cred}
+                        maxLength={4}
+                        onChange={ handleInputConditional(setCred, /^\d*$/) }
+                    />
+                </InputBox>
 
-                <InputBox
-                    header="Notoriety:"
-                    value={notoriety}
-                    maxLen={4}
-                    id={styles.notoriety}
-                    onChange={ handleInputConditional(setNotoriety, /^\d*$/) }
-                />
+                <InputBox header="Notoriety:" id={styles.notoriety}>
+                    <input
+                        value={notoriety}
+                        maxLength={4}
+                        onChange={ handleInputConditional(setNotoriety, /^\d*$/) }
+                    />
+                </InputBox>
 
-                <InputBox
-                    header="Awareness:"
-                    value={awareness}
-                    maxLen={4}
-                    id={styles.awareness}
-                    onChange={ handleInputConditional(setAwareness, /^\d*$/) }
-                />
+                <InputBox header="Awareness:" id={styles.awareness}>
+                    <input
+                        value={awareness}
+                        maxLength={4}
+                        onChange={ handleInputConditional(setAwareness, /^\d*$/) }
+                    />
+                </InputBox>
             </div>
         </div>
     )

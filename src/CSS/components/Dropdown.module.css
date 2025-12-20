@@ -10,7 +10,7 @@
 }
 
 
-.container {
+.personalData {
     position: relative;
 
     font-family: inherit;
@@ -28,11 +28,13 @@
 
     text-overflow: ellipsis;
     font-size: inherit;
+    text-align: inherit;
 
     p {
         text-overflow: ellipsis;
         overflow: hidden;
         white-space: nowrap;
+        flex: 1;
     }
 }
 
@@ -51,4 +53,5 @@
 
     width: 100%;
     border-radius: 5px;
+    z-index: 1000;
 }
