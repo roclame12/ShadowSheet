@@ -56,20 +56,19 @@
         background-color: transparent;
     }
 
-    .suffix {
-        padding-left: 1ch;
-    }
+    .suffix { padding-left: 1ch; }
 }
 
 .input-box-input:focus { outline: none; }
 
 
-.personalData {
+#personalData {
     display: flex;
     flex-direction: column;
-    width: 40%;
 
     gap: 15px;
+
+    grid-area: personal-data;
 
     .grid {
         display: grid;
@@ -78,7 +77,7 @@
             "meta-type   meta-type   meta-type ethnicity ethnicity ethnicity"
             "age         age         height    height    weight    weight"
             "street-cred street-cred notoriety notoriety awareness awareness";
-        gap: .5vh 1vw;
+        gap: 1vh 1vw;
     }
 
     #metaType { grid-area: meta-type; }
@@ -92,3 +91,27 @@
     #awareness  { grid-area: awareness; }
 }
 
+#qualities {
+    grid-area: qualities;
+    background-color: red;
+}
+
+#attributes {
+    grid-area: attributes;
+    background-color: green;
+}
+
+#skills {
+    grid-area: skills;
+    background-color: blue;
+}
+
+.page {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "personal-data qualities"
+                         "attributes    skills";
+
+    gap: .7vw;
+}

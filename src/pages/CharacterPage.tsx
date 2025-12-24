@@ -1,6 +1,6 @@
 import styles from "../CSS/pages/CharacterPage.module.css"
 import Header from "../components/Header.tsx";
-import {useState, useRef, ReactNode, ReactElement} from "react";
+import { useState, useRef, ReactNode } from "react";
 import DropDown, { DDItem } from "../components/DropDown.tsx";
 
 
@@ -25,7 +25,6 @@ function InputBox(props: InputBoxProps) {
         </label>
     )
 }
-
 
 
 function PersonalData() {
@@ -60,7 +59,7 @@ function PersonalData() {
     }
 
     return (
-        <div className={styles.personalData}>
+        <div id={styles.personalData}>
             <Header>Personal Data</Header>
             <div className={styles.grid}>
                 <div className={styles.inputBox} id={styles.metaType}>
@@ -133,11 +132,41 @@ function PersonalData() {
 }
 
 
+function Qualities() {
+    return (
+        <div id={styles.qualities}>
+
+        </div>
+    )
+}
+
+
+function Attributes() {
+    return (
+        <div id={styles.attributes}>
+
+        </div>
+    )
+}
+
+
+function Skills() {
+    return (
+        <div id={styles.skills}>
+
+        </div>
+    )
+}
+
+
 export default function CharacterPage() {
 
     return (
-        <div className="global-page-container">
+        <div className={`global-page-container ${styles.page}`}>
             <PersonalData/>
+            <Qualities/>
+            <Attributes/>
+            <Skills/>
         </div>
     )
 }
