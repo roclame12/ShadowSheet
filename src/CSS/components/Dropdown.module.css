@@ -3,14 +3,9 @@
 .container { position: relative; }
 
 
-.btn {
-    background-color: transparent;
-    border: none;
+.icon { width: 1em; }
 
-    .icon { width: 1em; }
-
-    .iconFlipped { transform: scaleY(-1); }
-}
+.iconFlipped { transform: scaleY(-1); }
 
 
 .personalData {

@@ -1,7 +1,7 @@
 import styles from "../CSS/pages/CharacterPage.module.css"
 import Header from "../components/Header.tsx";
 import { useState, useRef, ReactNode } from "react";
-import DropDown, { DDItem } from "../components/DropDown.tsx";
+import DropDown from "../components/DropDown.tsx";
 
 
 interface InputBoxProps {
@@ -65,10 +65,10 @@ function PersonalData() {
                 <div className={styles.inputBox} id={styles.metaType}>
                     <label htmlFor={styles.metaTypeDropdown}>Meta Type:</label>
                     <DropDown className={styles.dropDown} id={styles.metaTypeDropdown}>
-                        <DDItem>Human</DDItem>
-                        <DDItem>Elf</DDItem>
-                        <DDItem>Ork</DDItem>
-                        <DDItem>Troll</DDItem>
+                        <DropDown.Item>Human</DropDown.Item>
+                        <DropDown.Item>Elf</DropDown.Item>
+                        <DropDown.Item>Ork</DropDown.Item>
+                        <DropDown.Item>Troll</DropDown.Item>
                     </DropDown>
                 </div>
 
