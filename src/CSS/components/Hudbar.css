@@ -8,11 +8,11 @@
 
 .stat-header {
     color: var(--text-color-header);
-    font-size: var(--font-size-xxs);
+    font-size: var(--font-size-xs);
     text-decoration: underline;
 }
 
-.stat-text { font-size: var(--font-size-l); }
+.stat-text { font-size: var(--font-size-xl); }
 
 .stat-modifier {
     font-size: var(--font-size-xxs);
@@ -26,11 +26,11 @@
 }
 
 .upgrade-button-icon {
-    width: var(--font-size-m);
+    width: var(--font-size-l);
 }
 
 .upgrade-button-icon:hover {
-    width: var(--font-size-l);
+    width: var(--font-size-xl);
 }
 
 .hudbar-container {

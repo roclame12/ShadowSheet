@@ -1,0 +1,55 @@
+@import "../globals.css";
+
+.container { position: relative; }
+
+
+.icon { width: 1em; }
+
+.iconFlipped { transform: scaleY(-1); }
+
+
+.personalData {
+    position: relative;
+
+    font-family: inherit;
+    color: var(--text-color);
+    background-color: var(--background-black);
+    flex-wrap: nowrap;
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex: 1;
+    flex-wrap: nowrap;
+
+    text-overflow: ellipsis;
+    font-size: inherit;
+    text-align: inherit;
+
+    p {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        flex: 1;
+    }
+}
+
+.item {
+    all: unset;
+    width: 100%;
+    transition: background-color var(--animation-fast) ease-in-out;
+
+    &:hover { background-color: var(--primary-black); }
+}
+
+.menu {
+    background-color: var(--secondary-black);
+
+    position: absolute;
+
+    width: 100%;
+    border-radius: 5px;
+    z-index: 1000;
+}

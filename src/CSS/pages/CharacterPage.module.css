@@ -1,0 +1,116 @@
+@import "../globals.css";
+
+
+/* <InputBox> classes */
+.inputContainer {
+    display: flex;
+    flex-direction: row;
+
+    gap: var(--font-size-xxs);
+    color: var(--text-color);
+
+}
+
+.inputBox {
+    display: flex;
+    flex-direction: row;
+
+    gap: var(--font-size-xxs);
+
+    color: var(--text-color-header);
+    font-size: var(--font-size-xxs);
+    text-overflow: ellipsis;
+    text-align: right;
+
+    .body {
+        display: flex;
+        flex-direction: row;
+        flex: 1;
+        min-width: 0;
+
+        font-size: var(--font-size-s);
+        color: var(--text-color);
+    }
+
+    input {
+        flex: 1;
+        min-width: inherit;
+
+        font-family: inherit;
+        font-size: inherit;
+        color: inherit;
+        text-align: right;
+
+        background-color: inherit;
+        border: none;
+    }
+
+    .dropDown {
+        flex: 1;
+        min-width: inherit;
+
+        font-family: inherit;
+        font-size: var(--font-size-s);
+        color: var(--text-color);
+        text-align: right;
+        background-color: transparent;
+    }
+
+    .suffix { padding-left: 1ch; }
+}
+
+.input-box-input:focus { outline: none; }
+
+
+#personalData {
+    display: flex;
+    flex-direction: column;
+
+    gap: 15px;
+
+    grid-area: personal-data;
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(70px, 1fr));
+        grid-template-areas:
+            "meta-type   meta-type   meta-type ethnicity ethnicity ethnicity"
+            "age         age         height    height    weight    weight"
+            "street-cred street-cred notoriety notoriety awareness awareness";
+        gap: 1vh 1vw;
+    }
+
+    #metaType { grid-area: meta-type; }
+    #metaTypeDropdown {}
+    #ethnicity { grid-area: ethnicity; }
+    #age { grid-area: age; }
+    #height { grid-area: height; }
+    #weight { grid-area: weight; }
+    #streetCred  { grid-area: street-cred; }
+    #notoriety  { grid-area: notoriety; }
+    #awareness  { grid-area: awareness; }
+}
+
+#qualities {
+    grid-area: qualities;
+}
+
+#attributes {
+    grid-area: attributes;
+    background-color: green;
+}
+
+#skills {
+    grid-area: skills;
+    background-color: blue;
+}
+
+.page {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-areas: "personal-data qualities"
+                         "attributes    skills";
+
+    gap: .7vw;
+}

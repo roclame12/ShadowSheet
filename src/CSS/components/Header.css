@@ -1,0 +1,15 @@
+@import "../globals.css";
+
+.header-container {
+    display: flex;
+    width: fit-content;
+    padding-right: 8vw;
+    border-bottom: 2px dashed var(--text-color);
+
+    color: var(--text-color);
+}
+
+.header-text {
+    font-size: var(--font-size-l);
+    font-weight: normal;
+}

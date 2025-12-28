@@ -22,6 +22,7 @@ export default function Footer() {
                 className="footer-button"
                 onClick={() => { setPage(i) }}
                 title={pageTooltips[i]}
+                key={pageNames[i]}
             >
                 { page === i ? <b>{ pageNames[i] }</b> : <p>{ pageNames[i] }</p>}
             </button>

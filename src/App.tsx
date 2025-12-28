@@ -3,6 +3,7 @@ import { invoke } from "@tauri-apps/api/core";
 import "./CSS/globals.css"
 import HudBar from "./components/HudBar.tsx";
 import Footer from "./components/Footer";
+import CharacterPage from "./pages/CharacterPage.tsx";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");
@@ -16,8 +17,7 @@ function App() {
   return (
     <main style={{display: "flex", flexDirection: "column", height: "100vh", width: "100vw"}}>
         <HudBar/>
-        <div style={{width:'100%', flex:1, backgroundColor:"var(--background-black)"}}>
-        </div>
+            <CharacterPage/>
         <Footer/>
     </main>
   );
