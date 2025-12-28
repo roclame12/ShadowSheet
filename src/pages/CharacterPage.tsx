@@ -1,7 +1,8 @@
 import styles from "../CSS/pages/CharacterPage.module.css"
-import Header from "../components/Header.tsx";
 import { useState, useRef, ReactNode } from "react";
+import Header from "../components/Header.tsx";
 import DropDown from "../components/DropDown.tsx";
+import Table from "../components/Table.tsx";
 
 
 interface InputBoxProps {
@@ -135,7 +136,40 @@ function PersonalData() {
 function Qualities() {
     return (
         <div id={styles.qualities}>
-
+            <Table header={["Qualities", "blah"]} columns={4} colTemplate={"1fr 2fr"}>
+                <Table.Row>
+                    <div>blah</div>
+                    <div>blah</div>
+                </Table.Row>
+                <Table.Row>
+                    <p>blah</p>
+                    <p>blah</p>
+                </Table.Row>
+                <Table.Row>
+                    <div>blah</div>
+                    <div>blah</div>
+                </Table.Row>
+                <Table.Row>
+                    <p>blah</p>
+                    <p>blah</p>
+                </Table.Row>
+                <Table.Row>
+                    <div>blah</div>
+                    <div>blah</div>
+                </Table.Row>
+                <Table.Row>
+                    <p>blah</p>
+                    <p>blah</p>
+                </Table.Row>
+                <Table.Row>
+                    <div>blah</div>
+                    <div>blah</div>
+                </Table.Row>
+                <Table.Row>
+                    <p>blah</p>
+                    <p>blah</p>
+                </Table.Row>
+            </Table>
         </div>
     )
 }

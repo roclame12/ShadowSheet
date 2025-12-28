@@ -16,7 +16,7 @@ export interface TableProps {
  *
  * @param children the child elements of the row
  */
-export function Row({ children }: {children: ReactElement[]}): ReactElement {
+function Row({ children }: {children: ReactElement[] | ReactElement}): ReactElement {
     return (
         <div className="table-row" role="row">
             {children.map(item => ( /* Wrap everything in a div so it'll display correctly */
@@ -30,7 +30,7 @@ export function Row({ children }: {children: ReactElement[]}): ReactElement {
 
 
 /**
- * A column of the Table. Each Column contains it's own sub-columns that are enforced through a grid.
+ * A column of the Table. Each Column contains its own sub-columns that are enforced through a grid.
  *
  * @param header the header for the column, gives labels for each sub-column of the column
  * @param children the Rows of the table
@@ -89,3 +89,5 @@ export default function Table(props: TableProps) {
         </div>
     )
 }
+
+Table.Row = Row;
