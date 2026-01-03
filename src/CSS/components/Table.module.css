@@ -20,4 +20,10 @@
         color: var(--text-color);
         font-size: var(--font-size-s);
     }
+
+    tr {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
