@@ -135,15 +135,23 @@ function PersonalData() {
 function Qualities() {
     return (
         <div id={styles.qualities}>
-            <Table header={[{text: "foo", width: 25}, {text: "bar"}, {text: "baz"}]} subTables={2}>
-                <tr>
-                    <td>blah1</td>
-                    <td>blah2</td>
-                    <td>blah3</td>
-                    <td>blah4</td>
-                    <td>blah5</td>
-                    <td>blah6</td>
-                </tr>
+            <Table header={[{text: "foo"}, {text: "bar"}]} subTables={2}>
+                <>blah</>
+                <p>blah2</p>
+                <p>blah3</p>
+                <p>blah4</p>
+                <p>blah5</p>
+                <p>blah6</p>
+                <p>blah7</p>
+                <p>blah8</p>
+                <>blah</>
+                <p>blah2</p>
+                <p>blah3</p>
+                <p>blah4</p>
+                <p>blah5</p>
+                <p>blah6</p>
+                <p>blah7</p>
+                <p>blah8</p>
             </Table>
         </div>
     )

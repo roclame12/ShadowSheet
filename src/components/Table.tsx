@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import React, {ReactNode, CSSProperties} from 'react';
 import styles from "../CSS/components/Table.module.css"
 
 
@@ -20,14 +20,14 @@ interface HeaderObj {
  * @param subTables the amount of "subtables" the table has. See {@link Table} for a definition of what a subtable is.
  */
 function formatHeaders(headers: HeaderObj[], subTables: number) {
-    // figure out the total widths and throw an error if those widths are wrong
-    const percentageSum = headers.reduce((sum: number, current) => {
+    // figure out the total width and throw an error if that width is larger than 100%
+    const percentageSum = headers.reduce((sum: number, current): number => {
         const adder = current.width ? current.width : 0;
         return sum + adder;
     }, 0)
     if (percentageSum > 100) throw "Percentage total for table should be no more than 100%";
 
-    //return a formatted list of <td/> tags with the proper widths
+    // return a formatted list of <td/> tags with the proper widths
     let formated: ReactNode[] = [];
     for (let i = 0; i < subTables; i++) {
         formated.push(...headers.map(
@@ -44,9 +44,56 @@ function formatHeaders(headers: HeaderObj[], subTables: number) {
     return formated;
 }
 
+/**
+ * Props for {@link Body}
+ *
+ * @property children The children passed to {@link Table}
+ * @property headerNum the amount of headers per sub table
+ * @property subTables the amount of subTables in the Table. See {@link Table} for a definition of what a subtable is.
+ */
+interface BodyProps {
+    children: ReactNode | ReactNode[];
+    headerNum: number;
+    subTables: number;
+}
 
 /**
- * interface for Table's props
+ * Component that handles the formating of the table's body. Takes the children passed to {@link Table} and then places
+ * them into a table body with rows with the same amount of cells as columns within the table.
+ *
+ * @param props the props for the Body, defined in {@link BodyProps}
+ * @constructor
+ */
+function Body(props: BodyProps) {
+    const columns = props.headerNum * props.subTables;
+
+    // stack the children with fragments until there's enough elements to be even with the amount of columns in the table
+    let children = Array.isArray(props.children) ? [...props.children] : [props.children];
+    for (let i = 0; i < (children.length % columns); i++) {
+        children.push(<></>)
+    }
+
+    // put each child into a table row, then put that row into formatted
+    let formatted: ReactNode[] = [];
+    for (let j = 0; j < (children.length / columns); j++) {
+        const slice = children.slice(j * columns, (j + 1) * columns);
+
+        const formattedSlice = slice.map((value, i) => {
+            // if the column number of a cell is at the boundary of a sub table, add a border to the right of the cell
+            return (i + 1) % (columns / props.subTables) === 0 && (i + 1) !== slice.length ?
+                <td className={styles.borderRow}>{value}</td> :
+                <td>{value}</td>
+        });
+        
+        formatted.push(<tr>{formattedSlice}</tr>)
+    }
+
+    return (<tbody> { formatted } </tbody>)
+}
+
+
+/**
+ * Props for {@link Table}
  *
  * @property header    an array of {@link HeaderObj} objects to determine the layout of the table
  * @property children  The components that will be contained within the table.
@@ -67,10 +114,10 @@ interface TableProps {
  * into new columns to allow for more information per row to be displayed.
  *
  * @example<caption>The following creates a table with 4 equal width columns, and 8 total cells (including the header) with the last cell being empty</caption>
- * <Table header={[{text: "foo", width:50}, {text:"bar", width: 50}]} subTables={2}>
- *     <p>Lorem ipsum</p>
- *     <p>dolor sit</p>
- *     <p>amet, consectetur</p>
+ * <Table header={[{text: "foo"}, {text:"bar"}]} subTables={2}>
+ *     <>Lorem ipsum</>
+ *     <>dolor sit</>
+ *     <>amet, consectetur</>
  * </Table>
  *
  * @param props the props for the table, defined in {@link TableProps}
@@ -87,9 +134,9 @@ export default function Table(props: TableProps) {
                         { formatHeaders(headers, subTables) }
                     </tr>
                 </thead>
-                <tbody>
+                <Body headerNum={ headers.length } subTables={ subTables }>
                     { props.children }
-                </tbody>
+                </Body>
             </table>
         </div>
     )

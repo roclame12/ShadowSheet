@@ -1,12 +1,12 @@
 @import "../globals.css";
 
 .container {
-    table {
+    & table {
         width: 100%;
         border-collapse: collapse;
     }
 
-    thead {
+    & thead {
         background-color: var(--primary-white);
 
         font-weight: normal;
@@ -14,16 +14,25 @@
         text-align: left;
     }
 
-    tbody {
+    & tbody {
         background-color: var(--secondary-black);
 
         color: var(--text-color);
         font-size: var(--font-size-s);
+
     }
 
-    tr {
+    & tr {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+
+    & td { padding: .1ch .3ch; }
+}
+
+
+.borderRow {
+    border-right: 2px solid var(--primary-white);
+    margin-right: 100px;
 }
