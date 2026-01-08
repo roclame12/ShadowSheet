@@ -133,26 +133,16 @@ function PersonalData() {
 
 
 function Qualities() {
+    const [test, setTest] = useState<string>("Italian?");
     return (
         <div id={styles.qualities}>
-            <Table header={[{text: "foo"}, {text: "bar"}]} subTables={2}>
-                <>blah</>
+            <Table header={["foo", {text: "bar", width: 75}]} subTables={2}>
+                <p>blah</p>
                 <p>blah2</p>
-                <p>blah3</p>
+                <p>{test}</p>
                 <p>blah4</p>
-                <p>blah5</p>
-                <p>blah6</p>
-                <p>blah7</p>
-                <p>blah8</p>
-                <>blah</>
-                <p>blah2</p>
-                <p>blah3</p>
-                <p>blah4</p>
-                <p>blah5</p>
-                <p>blah6</p>
-                <p>blah7</p>
-                <p>blah8</p>
             </Table>
+            <input value={test} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTest(e.target.value) } />
         </div>
     )
 }

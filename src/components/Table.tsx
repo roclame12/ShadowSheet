@@ -1,4 +1,4 @@
-import React, {ReactNode, CSSProperties} from 'react';
+import React, {ReactNode} from 'react';
 import styles from "../CSS/components/Table.module.css"
 
 
@@ -6,43 +6,67 @@ import styles from "../CSS/components/Table.module.css"
  * interface that determines the layout of the table.
  *
  * @property text  What the text should say
- * @property width the percentage of the sub-table the column should take up. Component assumes that the given widths add up to 100%
+ * @property width the percentage of the sub-table the column should take up. Components assume that the given widths add up to 100%
  */
 interface HeaderObj {
     text: string;
-    width?: number;
+    width: number;
+}
+
+
+/**
+ * Props for {@link Head}
+ *
+ * @property headers outlines the text you'd like to display in the heading row and the width (if using {@link HeaderObj}) that you'd like it to be
+ * @property subTables the amount of subTables in the Table. See {@link Table} for a definition of what a subtable is.
+ */
+interface HeadProps {
+    headers: Array<HeaderObj | string> | string | HeaderObj;
+    subTables: number;
 }
 
 /**
- * Function to format HeaderObjs into table cells that have an appropriate width for the table.
+ * Constructs the header row for {@link Table}. Can implicitly determine the width of the rows by the headers given to it.
+ * HeaderObjs give an explicit percentage width of the subtable to take up, while strings will take whatever space that
+ * is remaining.
  *
- * @param headers the HeaderObjs that are passed to {@link Table}
- * @param subTables the amount of "subtables" the table has. See {@link Table} for a definition of what a subtable is.
+ * @param props the props for the Head, defined by {@link HeadProps}
  */
-function formatHeaders(headers: HeaderObj[], subTables: number) {
+function Head(props: HeadProps) {
+    const headers = Array.isArray(props.headers) ? props.headers : [props.headers]
+
     // figure out the total width and throw an error if that width is larger than 100%
     const percentageSum = headers.reduce((sum: number, current): number => {
-        const adder = current.width ? current.width : 0;
+        const adder = typeof current === "string" ? 0 : current.width;
         return sum + adder;
     }, 0)
     if (percentageSum > 100) throw "Percentage total for table should be no more than 100%";
 
-    // return a formatted list of <td/> tags with the proper widths
+    // construct a formatted list of <td/> tags with the proper widths
     let formated: ReactNode[] = [];
-    for (let i = 0; i < subTables; i++) {
-        formated.push(...headers.map(
-            (value) =>
-                <td
-                    style={{width: `${value.width ? (value.width / subTables) : {}}%`}}
-                    key={value.text + i}
-                >
-                    {value.text}
-                </td>
-        ));
+    for (let i = 0; i < props.subTables; i++) {
+        formated.push(
+            ...headers.map(
+                (value) => {
+                    const style = typeof value === "string" ?
+                        {} :
+                        { width: `${ value.width / props.subTables }%` }
+                    const text = typeof value === "string" ? value : value.text;
+
+                    return ( <td style={style} key={text + i}>{ text }</td> )
+            })
+        );
     }
 
-    return formated;
+    return (
+        <thead>
+            <tr>
+                { formated }
+            </tr>
+        </thead>
+    );
 }
+
 
 /**
  * Props for {@link Body}
@@ -81,14 +105,14 @@ function Body(props: BodyProps) {
         const formattedSlice = slice.map((value, i) => {
             // if the column number of a cell is at the boundary of a sub table, add a border to the right of the cell
             return (i + 1) % (columns / props.subTables) === 0 && (i + 1) !== slice.length ?
-                <td className={styles.borderRow}>{value}</td> :
-                <td>{value}</td>
+                <td className={styles.borderRow} key={`row${j}-${i}`}>{value}</td> :
+                <td key={`row${j}-${i}`}>{value}</td>
         });
         
-        formatted.push(<tr>{formattedSlice}</tr>)
+        formatted.push(<tr key={j}>{formattedSlice}</tr>)
     }
 
-    return (<tbody> { formatted } </tbody>)
+    return (<tbody>{ formatted }</tbody>)
 }
 
 
@@ -100,13 +124,13 @@ function Body(props: BodyProps) {
  * @property subTables How many times the header should repeat so the table can take up more space horizontally (defaults to 1)
  */
 interface TableProps {
-    header: HeaderObj | HeaderObj[];
+    header: HeaderObj | string | Array<HeaderObj | string>;
     children: ReactNode | ReactNode[];
     subTables?: number
 }
 
 /**
- * A responsive table component that is styled appropriately for the app.
+ * A responsive table component.
  *
  * Children will fill rows left to right. If there's not enough children to fill a row, whitespace will fill the remainder.
  *
@@ -129,11 +153,7 @@ export default function Table(props: TableProps) {
     return (
         <div className={styles.container}>
             <table>
-                <thead>
-                    <tr>
-                        { formatHeaders(headers, subTables) }
-                    </tr>
-                </thead>
+                <Head headers={ headers } subTables={ subTables }/>
                 <Body headerNum={ headers.length } subTables={ subTables }>
                     { props.children }
                 </Body>
