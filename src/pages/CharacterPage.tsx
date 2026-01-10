@@ -15,7 +15,6 @@ interface InputBoxProps {
 
 function InputBox(props: InputBoxProps) {
     const focusRef = useRef<HTMLInputElement>(null);
-
     return (
         <label className={styles.inputBox} title={props.title} id={props.id}>
             {props.header}
@@ -134,42 +133,13 @@ function PersonalData() {
 
 
 function Qualities() {
+    const [test, setTest] = useState<string>("Italian?");
     return (
         <div id={styles.qualities}>
-            <Table header={["Qualities", "blah"]} columns={4} colTemplate={"1fr 2fr"}>
-                <Table.Row>
-                    <div>blah</div>
-                    <div>blah</div>
-                </Table.Row>
-                <Table.Row>
-                    <p>blah</p>
-                    <p>blah</p>
-                </Table.Row>
-                <Table.Row>
-                    <div>blah</div>
-                    <div>blah</div>
-                </Table.Row>
-                <Table.Row>
-                    <p>blah</p>
-                    <p>blah</p>
-                </Table.Row>
-                <Table.Row>
-                    <div>blah</div>
-                    <div>blah</div>
-                </Table.Row>
-                <Table.Row>
-                    <p>blah</p>
-                    <p>blah</p>
-                </Table.Row>
-                <Table.Row>
-                    <div>blah</div>
-                    <div>blah</div>
-                </Table.Row>
-                <Table.Row>
-                    <p>blah</p>
-                    <p>blah</p>
-                </Table.Row>
+            <Table header={["foo", {text: "bar", width: 75}]} subTables={2}>
+                <>blah</>
             </Table>
+            <input value={test} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTest(e.target.value) } />
         </div>
     )
 }
