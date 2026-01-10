@@ -1,4 +1,4 @@
-import React, {ReactNode} from 'react';
+import { ReactNode } from 'react';
 import styles from "../CSS/components/Table.module.css"
 
 
@@ -42,6 +42,12 @@ function Head(props: HeadProps) {
     }, 0)
     if (percentageSum > 100) throw "Percentage total for table should be no more than 100%";
 
+    const undefinedWidths = headers.reduce( (sum: number, current) => {
+            const adder = typeof current === "string" ? 1 : 0;
+            return sum + adder;
+        }, 0)
+    const fillWidth = (100 - percentageSum) / undefinedWidths;
+
     // construct a formatted list of <td/> tags with the proper widths
     let formated: ReactNode[] = [];
     for (let i = 0; i < props.subTables; i++) {
@@ -49,8 +55,8 @@ function Head(props: HeadProps) {
             ...headers.map(
                 (value) => {
                     const style = typeof value === "string" ?
-                        {} :
-                        { width: `${ value.width / props.subTables }%` }
+                        { width: `${ fillWidth / props.subTables }%`} :
+                        { width: `${ value.width / props.subTables }%`};
                     const text = typeof value === "string" ? value : value.text;
 
                     return ( <td style={style} key={text + i}>{ text }</td> )

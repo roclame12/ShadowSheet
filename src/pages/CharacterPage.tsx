@@ -137,10 +137,7 @@ function Qualities() {
     return (
         <div id={styles.qualities}>
             <Table header={["foo", {text: "bar", width: 75}]} subTables={2}>
-                <p>blah</p>
-                <p>blah2</p>
-                <p>{test}</p>
-                <p>blah4</p>
+                <>blah</>
             </Table>
             <input value={test} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTest(e.target.value) } />
         </div>

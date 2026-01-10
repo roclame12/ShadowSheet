@@ -4,6 +4,7 @@
     & table {
         width: 100%;
         border-collapse: collapse;
+        table-layout: fixed;
     }
 
     & thead {
@@ -22,13 +23,13 @@
 
     }
 
-    & tr {
+    & td {
+        padding: .1ch .3ch;
+        white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        min-width: 0;
     }
-
-    & td { padding: .1ch .3ch; }
 }
 
 
