@@ -25,8 +25,8 @@
 
     & td {
         padding: .1ch .3ch;
-        white-space: nowrap;
-        overflow: hidden;
+        white-space: normal;
+        overflow: visible;
         text-overflow: ellipsis;
         min-width: 0;
     }

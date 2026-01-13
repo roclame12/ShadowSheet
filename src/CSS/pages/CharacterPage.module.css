@@ -81,7 +81,6 @@
     }
 
     #metaType { grid-area: meta-type; }
-    #metaTypeDropdown {}
     #ethnicity { grid-area: ethnicity; }
     #age { grid-area: age; }
     #height { grid-area: height; }
@@ -93,6 +92,16 @@
 
 #qualities {
     grid-area: qualities;
+
+    .popup {
+        display: flex;
+
+        width: 30vw;
+        height: 30vh;
+    }
+    .positiveText { color: var(--text-color-pos) }
+    .negativeText { color: var(--text-color-neg) }
+    .defaultText { color: var(--text-color-header)}
 }
 
 #attributes {

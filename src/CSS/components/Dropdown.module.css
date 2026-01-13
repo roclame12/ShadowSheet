@@ -7,16 +7,6 @@
 
 .iconFlipped { transform: scaleY(-1); }
 
-
-.personalData {
-    position: relative;
-
-    font-family: inherit;
-    color: var(--text-color);
-    background-color: var(--background-black);
-    flex-wrap: nowrap;
-}
-
 .inputBox {
     display: flex;
     flex-direction: row;
@@ -48,6 +38,8 @@
     background-color: var(--secondary-black);
 
     position: absolute;
+    display: flex;
+    flex-direction: column;
 
     width: 100%;
     border-radius: 5px;

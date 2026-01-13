@@ -1,8 +1,9 @@
 import styles from "../CSS/pages/CharacterPage.module.css"
-import { useState, useRef, ReactNode } from "react";
+import React, { useState, useRef, ReactNode } from "react";
 import Header from "../components/Header.tsx";
 import DropDown from "../components/DropDown.tsx";
 import Table from "../components/Table.tsx";
+import Popup from "../components/Popup.tsx";
 
 
 interface InputBoxProps {
@@ -133,13 +134,12 @@ function PersonalData() {
 
 
 function Qualities() {
-    const [test, setTest] = useState<string>("Italian?");
     return (
-        <div id={styles.qualities}>
-            <Table header={["foo", {text: "bar", width: 75}]} subTables={2}>
-                <>blah</>
-            </Table>
-            <input value={test} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTest(e.target.value) } />
+        <div id={ styles.qualities }>
+            <Popup className={ styles.popup }>
+                <p>blah</p>
+                <p>blah2</p>
+            </Popup>
         </div>
     )
 }

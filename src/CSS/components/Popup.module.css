@@ -1,0 +1,23 @@
+@import "../globals.css";
+
+
+.blur {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    position: fixed;
+    z-index: 9000;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background-color: rgba(0, 0, 0, .8);
+}
+
+.container {
+    background-color: var(--background-black);
+    border-radius: 5px;
+}

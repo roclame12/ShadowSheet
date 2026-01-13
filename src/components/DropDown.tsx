@@ -58,12 +58,14 @@ function Icon({isActive} : {isActive: boolean}): ReactElement {
 /**
  * Props for Item
  *
- * @param children A label for the item. The "human-readable" representation of the item
- * @param value    What the option represents internally. (Will default to the value of children)
+ * @param children  A label for the item. The "human-readable" representation of the item
+ * @param value     What the option represents internally. (Will default to the value of children)
+ * @param className CSS class to add to the component
  */
 interface ItemProps {
     children: string;
     value?: string | number;
+    className?: string;
 }
 
 /**
@@ -93,7 +95,7 @@ function Item (props: ItemProps) {
         <button
             key={ itemPair.value }
             onClick={ handleClick }
-            className={ styles.item }
+            className={ props.className ? `${styles.item} ${props.className}` : styles.item }
         >
             {props.children}
         </button>
