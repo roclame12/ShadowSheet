@@ -1,7 +1,7 @@
 @import "../globals.css";
 
 
-.blur {
+.backDrop {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -14,10 +14,27 @@
     width: 100vw;
     height: 100vh;
 
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(0, 0, 0, .9);
 }
 
 .container {
     background-color: var(--background-black);
     border-radius: 5px;
+    padding: .2vmax;
+}
+
+.closeContainer {
+    width: 100%;
+    display: flex;
+
+    justify-content: end;
+
+    button {
+        border: none;
+        background: none;
+    }
+
+    img {
+        width: var(--font-size-xl);
+    }
 }

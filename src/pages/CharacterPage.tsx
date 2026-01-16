@@ -134,12 +134,15 @@ function PersonalData() {
 
 
 function Qualities() {
+    const [demoOpen, setDemoOpen] = useState<boolean>(false);
+
     return (
         <div id={ styles.qualities }>
-            <Popup className={ styles.popup }>
+            <Popup className={ styles.popup } open={ demoOpen } setOpen={ setDemoOpen }>
                 <p>blah</p>
                 <p>blah2</p>
             </Popup>
+            <button style={{width: "5vw", height: "5vh"}} onClick={() => setDemoOpen(true)}>open popup</button>
         </div>
     )
 }

@@ -1,4 +1,5 @@
-import React, {ReactElement, useState, createContext, useContext, useEffect, useRef} from "react"
+import { ReactElement, useState, createContext, useContext, Dispatch, SetStateAction } from "react"
+import { useOnClickAway } from "../hooks.ts";
 import styles from "../CSS/components/Dropdown.module.css"
 
 /**
@@ -13,33 +14,10 @@ interface keyPair {
 }
 
 // context for the setter that determines which Item is selected within the body of the DropDown
-const selectedContext = createContext<React.Dispatch<React.SetStateAction<keyPair>> | null>(null);
+const selectedContext = createContext<Dispatch<SetStateAction<keyPair>> | null>(null);
 
 // context for the setter that controls whether the DropDown's menu should be shown or not
-const visibleContext = createContext<React.Dispatch<React.SetStateAction<boolean>> | null>(null);
-
-
-/**
- * Custom hook that  allows for the Dropdown menu to be dismissed whenever the user clicks outside the menu.
- * Intended to be attached to the container of the DropDown
- *
- * @param setIsExpanded the setter for the state variable that expands the menu
- */
-function useLightDismiss(setIsExpanded: React.Dispatch<React.SetStateAction<boolean>>) {
-    const ref = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        function handleClick(event: MouseEvent) {
-            // if the HTML reference is valid and the mouse click is outside the div, close the dropdown menu
-            if (ref.current && !ref.current.contains(event.target as Node)) setIsExpanded(false);
-        }
-
-        document.addEventListener("mousedown", handleClick);
-        return () => { document.removeEventListener("mousedown", handleClick); }
-    }, []);
-
-    return ref;
-}
+const visibleContext = createContext<Dispatch<SetStateAction<boolean>> | null>(null);
 
 
 /**
@@ -74,7 +52,7 @@ interface ItemProps {
  *
  * @param props props defined by {@link ItemProps}
  */
-function Item (props: ItemProps) {
+function Item (props: ItemProps): ReactElement {
     const itemPair: keyPair = {
         label: props.children,
         value: props.value ? props.value : props.children
@@ -113,8 +91,8 @@ function Item (props: ItemProps) {
  */
 interface MenuProps {
     isExpanded: boolean,
-    setExpanded: React.Dispatch<React.SetStateAction<boolean>>,
-    setSelected: React.Dispatch<React.SetStateAction<keyPair>>,
+    setExpanded: Dispatch<SetStateAction<boolean>>,
+    setSelected: Dispatch<SetStateAction<keyPair>>,
     children: ReactElement[]
 }
 
@@ -124,7 +102,7 @@ interface MenuProps {
  *
  * @param props props defined by {@link MenuProps}
  */
-function Menu(props: MenuProps) {
+function Menu(props: MenuProps): ReactElement {
     return (
         <visibleContext.Provider value={ props.setExpanded }>
             <selectedContext.Provider value={ props.setSelected }>
@@ -166,7 +144,7 @@ interface DropDownProps {
 export default function DropDown(props: DropDownProps): ReactElement {
     const [isExpanded, setExpanded] = useState<boolean>(false)
     const [selected, setSelected] = useState<keyPair>({label: "", value: ""}); // this might need to be lifted later for non-demo purposes
-    const dismissRef = useLightDismiss(setExpanded);
+    const dismissRef = useOnClickAway(() => setExpanded(false));
 
     return (
         <div
