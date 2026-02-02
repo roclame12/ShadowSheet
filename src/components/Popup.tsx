@@ -19,7 +19,7 @@ export default function Popup(props: PopupProps) {
             <div className={styles.container} ref={ useOnClickAway(close) }>
                 <div className={styles.closeContainer}>
                     <button onClick={ close }>
-                        <img src="../../public/icons/close.svg" alt="close icon" />
+                        <img src="/icons/close.svg" alt="close icon" />
                     </button>
                 </div>
                <div className={props.className ? props.className : ""}>{ props.children }</div>

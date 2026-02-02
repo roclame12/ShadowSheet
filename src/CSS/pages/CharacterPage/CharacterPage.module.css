@@ -1,4 +1,4 @@
-@import "../globals.css";
+@import "../../globals.css";
 
 
 /* <InputBox> classes */
@@ -90,19 +90,7 @@
     #awareness  { grid-area: awareness; }
 }
 
-#qualities {
-    grid-area: qualities;
-
-    .popup {
-        display: flex;
-
-        width: 30vw;
-        height: 30vh;
-    }
-    .positiveText { color: var(--text-color-pos) }
-    .negativeText { color: var(--text-color-neg) }
-    .defaultText { color: var(--text-color-header)}
-}
+#qualities { grid-area: qualities; }
 
 #attributes {
     grid-area: attributes;

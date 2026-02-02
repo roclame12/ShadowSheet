@@ -3,7 +3,7 @@ import { invoke } from "@tauri-apps/api/core";
 import "./CSS/globals.css"
 import HudBar from "./components/HudBar.tsx";
 import Footer from "./components/Footer";
-import CharacterPage from "./pages/CharacterPage.tsx";
+import CharacterPage from "./pages/CharacterPage/CharacterPage.tsx";
 
 function App() {
   const [greetMsg, setGreetMsg] = useState("");

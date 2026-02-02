@@ -1,9 +1,8 @@
-import styles from "../CSS/pages/CharacterPage.module.css"
+import styles from "../../CSS/pages/CharacterPage/CharacterPage.module.css"
 import React, { useState, useRef, ReactNode } from "react";
-import Header from "../components/Header.tsx";
-import DropDown from "../components/DropDown.tsx";
-import Table from "../components/Table.tsx";
-import Popup from "../components/Popup.tsx";
+import Header from "../../components/Header.tsx";
+import DropDown from "../../components/DropDown.tsx";
+import Qualities from "./Qualities.tsx";
 
 
 interface InputBoxProps {
@@ -128,21 +127,6 @@ function PersonalData() {
                     />
                 </InputBox>
             </div>
-        </div>
-    )
-}
-
-
-function Qualities() {
-    const [demoOpen, setDemoOpen] = useState<boolean>(false);
-
-    return (
-        <div id={ styles.qualities }>
-            <Popup className={ styles.popup } open={ demoOpen } setOpen={ setDemoOpen }>
-                <p>blah</p>
-                <p>blah2</p>
-            </Popup>
-            <button style={{width: "5vw", height: "5vh"}} onClick={() => setDemoOpen(true)}>open popup</button>
         </div>
     )
 }

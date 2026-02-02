@@ -1,0 +1,6 @@
+
+.qualitySwitch {
+    .positiveText { color: var(--text-color-pos) }
+    .negativeText { color: var(--text-color-neg) }
+    .defaultText { color: var(--text-color-header)}
+}
